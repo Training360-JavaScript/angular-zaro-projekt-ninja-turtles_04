@@ -2,31 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
-
-  apiUrl: string = environment.apiUrl;
-  endString: string = "product";
+export class ProductService extends BaseService<Product> {
 
 
-  constructor(private http: HttpClient) { }
+  constructor(http: HttpClient) {
+    super(http);
+    this.endString = "product"
+   }
 
-  getAll(): Observable<Product[]> {
-    return this.http.get(`${this.apiUrl}/${this.endString}`)
-  }
-
-  create(product: Product): Observable<Product> {
-    return this.http.post(`${this.apiUrl}/${this.endString}`, product)
-  }
-
-  update(product: Product): Observable<Product> {
-    return this.http.patch(`${this.apiUrl}/${this.endString}/${product.id}`, product)
-  }
-
-  delete(product: Product): Observable<Product> {
-    return this.http.delete(`${this.apiUrl}/${this.endString}/${product.id}`, product)
-  }
 }
