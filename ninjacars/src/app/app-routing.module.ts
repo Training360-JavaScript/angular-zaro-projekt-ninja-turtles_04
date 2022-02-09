@@ -7,10 +7,10 @@ import { EditProductComponent } from './page/edit-product/edit-product.component
 import { EditOrderComponent } from './page/edit-order/edit-order.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    ///component: DashbordComponent
-  },
+  // {
+  //   path: '',
+  //   ///component: DashbordComponent
+  // },
   {
     path: 'edit/product/:id',
     component: EditProductComponent

@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class BaseService<T> {
+export class BaseService<T extends {id: number}> {
 
   
   apiUrl: string = environment.apiUrl;
@@ -33,7 +33,7 @@ export class BaseService<T> {
   }
 
   delete(product: T): Observable<T> {
-    return this.http.delete<T>(`${this.apiUrl}/${this.endString}/${product.id}`, product)
+    return this.http.delete<T>(`${this.apiUrl}/${this.endString}/${product.id}`)
   }
 
 }
