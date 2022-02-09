@@ -19,6 +19,11 @@ export class BaseService<T> {
     return this.http.get<T[]>(`${this.apiUrl}/${this.endString}`)
   }
 
+  getOne(id: number): Observable<T> {
+    return this.http.get<T>(`${this.apiUrl}/${this.endString}/${id}`)
+
+  }
+
   create(product: T): Observable<T> {
     return this.http.post<T>(`${this.apiUrl}/${this.endString}`, product)
   }
