@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -8,12 +11,19 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class EditProductComponent implements OnInit {
 
-  constructor(private productService: ProductService) { }
+  product$!: Observable<Product>
+
+  constructor(private productService: ProductService,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
-    
+    this.route.params.subscribe({
+      next: param => this.product$ = this.productService.getOne(param['id'])
+    })
   }
 
+  
 
 
 }
