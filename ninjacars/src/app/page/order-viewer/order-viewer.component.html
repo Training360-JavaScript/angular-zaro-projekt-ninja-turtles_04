@@ -16,26 +16,20 @@
       <thead>
         <tr>
           <th>Id</th>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Category ID</th>
-          <th>Description</th>
-          <th>Price</th>
-          <th>Featured</th>
-          <th>Active</th>
+          <th>Customer ID</th>
+          <th>Product ID</th>
+          <th>Amount</th>
+          <th>Status</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of orders$ | async  | filter:phrase:filterKey | sort:direction:column:type">
           <td>{{ item.id }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.type }}</td>
-          <td>{{ item.catId }}</td>
-          <td>{{ item.description }}</td>
-          <td>{{ item.price }}</td>
-          <td>{{ item.featured }}</td>
-          <td>{{ item.active }}</td>
+          <td>{{ item.customerID }}</td>
+          <td>{{ item.productID }}</td>
+          <td>{{ item.amount }}</td>
+          <td>{{ item.status }}</td>
           <td><button class=" btn-info"><i class="fa fa-address-card" aria-hidden="true"></i></button></td>
         </tr>
       </tbody>
