@@ -12,6 +12,8 @@ import { EditOrderComponent } from './page/edit-order/edit-order.component';
 import { EditBillComponent } from './page/edit-bill/edit-bill.component';
 import { HeaderComponent } from './common/header/header.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
+import { SortPipe } from './pipe/sort.pipe';
+import { FilterPipe } from './pipe/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { SidebarComponent } from './common/sidebar/sidebar.component';
     EditOrderComponent,
     EditBillComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    SortPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
