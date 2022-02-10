@@ -1,1 +1,54 @@
-<p>{{bill$ | async | json }}</p>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title" *ngIf="bill$ | async">Edit Bill</h4>
+        <h4 class="card-title" *ngIf="!(bill$ | async)">Add New Bill</h4>
+
+      </div>
+      <div class="card-body">
+        <form #billForm="ngForm">
+          <input type="hidden" name="id" [(ngModel)]="bill.id">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating">Order ID</label>
+                <input type="number" class="form-control" name="orderId" [(ngModel)]="bill.orderID">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating">Amount</label>
+                <input type="number" class="form-control" name="amount" [(ngModel)]="bill.amount">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating">Status</label>
+                <select class="form-control" name="status" id="status" [(ngModel)]="bill.status">
+                  <option value="new" class="form-control">New</option>
+                  <option value="paid" class="form-control">Paid</option>
+
+                </select>
+              </div>
+            </div>
+          </div>
+
+
+          <button *ngIf="bill.id!==0" (click)="onUpdate(bill)" type="submit" class="btn btn-primary pull-right">Update
+            Bill</button>
+          <button *ngIf="bill.id===0" (click)="onCreate(bill)" type="submit" class="btn btn-primary pull-right">Create
+            Bill</button>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+
+  </div>
+</div>

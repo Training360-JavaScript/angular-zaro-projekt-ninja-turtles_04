@@ -26,7 +26,7 @@ export class ProductViewerComponent implements OnInit {
       this.keys.find((key) => key.toLowerCase() === column.toLowerCase()) ||
       'id';
     this.column = key;
-    // this.type = typeof Product[key];
+    this.type = typeof new Product()[key];
   }
   constructor(private productService: ProductService) {}
 

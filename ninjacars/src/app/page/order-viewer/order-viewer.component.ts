@@ -26,7 +26,7 @@ export class OrderViewerComponent implements OnInit {
       this.keys.find((key) => key.toLowerCase() === column.toLowerCase()) ||
       'id';
     this.column = key;
-    // this.type = typeof Order[key];
+    this.type = typeof new Order()[key];
   }
   constructor(private orderService: OrderService) {}
 
