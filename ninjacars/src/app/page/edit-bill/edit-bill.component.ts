@@ -24,7 +24,7 @@ export class EditBillComponent implements OnInit {
       next: param => this.bill$ = this.billService.getOne(param['id'])
     })
     this.bill$.subscribe({
-      next: bill => this.bill = bill
+      next: bill => this.bill = bill ? bill : this.bill
     })
   }
 
