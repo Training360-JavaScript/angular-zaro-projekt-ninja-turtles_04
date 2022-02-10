@@ -29,10 +29,10 @@ export class EditBillComponent implements OnInit {
   }
 
   onUpdate(bill: Bill) {
-    this.billService.update(bill)
+    this.billService.update(bill).subscribe()
   }
 
   onCreate(bill: Bill) {
-    this.billService.create(bill)
+    this.billService.create(bill).subscribe()
   }
 }
