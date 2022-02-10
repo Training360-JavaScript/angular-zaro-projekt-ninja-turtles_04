@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Bill } from 'src/app/model/bill';
 import { BillService } from 'src/app/service/bill.service';
@@ -16,7 +16,8 @@ export class EditBillComponent implements OnInit {
   bill: Bill = new Bill();
 
   constructor(private billService: BillService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -29,10 +30,14 @@ export class EditBillComponent implements OnInit {
   }
 
   onUpdate(bill: Bill) {
-    this.billService.update(bill).subscribe()
+    this.billService.update(bill).subscribe(
+      bill => this.router.navigate(['/', 'bills']),
+    )
   }
 
   onCreate(bill: Bill) {
-    this.billService.create(bill).subscribe()
+    this.billService.create(bill).subscribe(
+      bill => this.router.navigate(['/', 'bills']),
+    )
   }
 }
