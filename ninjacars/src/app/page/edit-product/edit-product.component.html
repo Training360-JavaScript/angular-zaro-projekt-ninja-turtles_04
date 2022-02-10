@@ -1,1 +1,82 @@
-<p>{{product$ | async | json }}</p>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title" *ngIf="product$ | async">Edit Product</h4>
+        <h4 class="card-title" *ngIf="!(product$ | async)">Add New Product</h4>
+
+      </div>
+      <div class="card-body">
+        <form #billForm="ngForm">
+          <input type="hidden" name="id" [(ngModel)]="product.id">
+
+          <h3 class="h5 text-secondary">Name *</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="string" class="form-control" name="name" [(ngModel)]="product.name">
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5 text-secondary">Type *</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="string" class="form-control" name="type" [(ngModel)]="product.type">
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5 text-secondary">Category ID *</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="number" class="form-control" name="catID" [(ngModel)]="product.catID">
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5 text-secondary">Description *</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="string" class="form-control" name="description" [(ngModel)]="product.description">
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5 text-secondary">Price *</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="number" class="form-control" name="price" [(ngModel)]="product.price">
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5 text-secondary">Conditions *</h3>
+          <div class="row">
+            <div class="form-group col-6">
+                <label class="bmd-label-floating">Featured</label>
+                <input type="boolean" class="form-control" name="featured" [(ngModel)]="product.featured">
+            </div>
+            <div class="form-group col-6">
+                <label class="bmd-label-floating">Active</label>
+                <input type="string" class="form-control" name="active" [(ngModel)]="product.active">
+            </div>
+          </div>
+
+          <button *ngIf="product.id!==0" (click)="onUpdate(product)" type="submit" class="btn btn-primary pull-right">Update
+            Product</button>
+          <button *ngIf="product.id===0" (click)="onCreate(product)" type="submit" class="btn btn-primary pull-right">Create
+            Product</button>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+
+  </div>
+</div>
