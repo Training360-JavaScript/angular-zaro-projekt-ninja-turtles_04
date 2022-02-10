@@ -13,6 +13,8 @@ export class EditCustomerComponent implements OnInit {
 
   customer$!: Observable<Customer>
 
+  customer: Customer = new Customer();
+
   constructor(private customerService: CustomerService,
     private route: ActivatedRoute) { }
 
@@ -20,6 +22,17 @@ export class EditCustomerComponent implements OnInit {
     this.route.params.subscribe({
       next: param => this.customer$ = this.customerService.getOne(param['id'])
     })
+    this.customer$.subscribe({
+      next: customer => this.customer = customer ? customer : this.customer
+    })
+  }
+
+  onUpdate(customer: Customer) {
+    this.customerService.update(customer)
+  }
+
+  onCreate(customer: Customer) {
+    this.customerService.create(customer)
   }
 
 }
