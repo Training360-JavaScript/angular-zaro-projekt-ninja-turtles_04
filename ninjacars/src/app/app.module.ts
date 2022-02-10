@@ -10,6 +10,8 @@ import { EditCategoryComponent } from './page/edit-category/edit-category.compon
 import { EditCustomerComponent } from './page/edit-customer/edit-customer.component';
 import { EditOrderComponent } from './page/edit-order/edit-order.component';
 import { EditBillComponent } from './page/edit-bill/edit-bill.component';
+import { HeaderComponent } from './common/header/header.component';
+import { SidebarComponent } from './common/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { EditBillComponent } from './page/edit-bill/edit-bill.component';
     EditCategoryComponent,
     EditCustomerComponent,
     EditOrderComponent,
-    EditBillComponent
+    EditBillComponent,
+    HeaderComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
