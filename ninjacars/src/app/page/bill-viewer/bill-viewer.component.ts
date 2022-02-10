@@ -26,7 +26,7 @@ export class BillViewerComponent implements OnInit {
       this.keys.find((key) => key.toLowerCase() === column.toLowerCase()) ||
       'id';
     this.column = key;
-    // this.type = typeof Bill[key];
+    this.type = typeof new Bill()[key];
   }
   constructor(private billService: BillService) {}
 

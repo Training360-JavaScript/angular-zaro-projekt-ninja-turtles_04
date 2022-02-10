@@ -26,7 +26,7 @@ export class CategoryViewerComponent implements OnInit {
       this.keys.find((key) => key.toLowerCase() === column.toLowerCase()) ||
       'id';
     this.column = key;
-    // this.type = typeof Category[key];
+    this.type = typeof new Category()[key];
   }
   constructor(private categoryService: CategoryService) {}
 

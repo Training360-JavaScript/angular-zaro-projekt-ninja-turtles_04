@@ -26,7 +26,7 @@ export class CustomerViewerComponent implements OnInit {
       this.keys.find((key) => key.toLowerCase() === column.toLowerCase()) ||
       'id';
     this.column = key;
-    // this.type = typeof Customer[key];
+    this.type = typeof new Customer()[key];
   }
   constructor(private customerService: CustomerService) {}
 
