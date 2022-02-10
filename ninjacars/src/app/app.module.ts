@@ -14,6 +14,12 @@ import { HeaderComponent } from './common/header/header.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { SortPipe } from './pipe/sort.pipe';
 import { FilterPipe } from './pipe/filter.pipe';
+import { BillViewerComponent } from './page/bill-viewer/bill-viewer.component';
+import { CategoryViewerComponent } from './page/category-viewer/category-viewer.component';
+import { CustomerViewerComponent } from './page/customer-viewer/customer-viewer.component';
+import { OrderViewerComponent } from './page/order-viewer/order-viewer.component';
+import { ProductViewerComponent } from './page/product-viewer/product-viewer.component';
+import { DashboardComponent } from './page/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,13 @@ import { FilterPipe } from './pipe/filter.pipe';
     HeaderComponent,
     SidebarComponent,
     SortPipe,
-    FilterPipe
+    FilterPipe,
+    BillViewerComponent,
+    CategoryViewerComponent,
+    CustomerViewerComponent,
+    OrderViewerComponent,
+    ProductViewerComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
