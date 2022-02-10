@@ -1,1 +1,78 @@
-<p>{{customer$ | async | json }}</p>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title" *ngIf="customer$ | async">Edit Customer</h4>
+        <h4 class="card-title" *ngIf="!(customer$ | async)">Add New Customer</h4>
+
+      </div>
+      <div class="card-body">
+        <form #billForm="ngForm">
+          <input type="hidden" name="id" [(ngModel)]="customer.id">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating h5 text-secondary">Customer ID *</label>
+                <input type="number" class="form-control" name="orderId" [(ngModel)]="customer.id">
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5 text-secondary">Full Name *</h3>
+          <div class="row">
+            <div class="form-group col-6">
+                <label class="bmd-label-floating">First Name</label>
+                <input type="string" class="form-control" name="amount" [(ngModel)]="customer.firstName">
+            </div>
+            <div class="form-group col-6">
+                <label class="bmd-label-floating">Last Name</label>
+                <input type="string" class="form-control" name="description" [(ngModel)]="customer.lastName">
+            </div>
+          </div>
+
+          <h3 class="h5 text-secondary">Email *</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="string" class="form-control" name="email" [(ngModel)]="customer.email">
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5 text-secondary">Address *</h3>
+          <div class="row">
+            <div class="form-group col-2">
+              <label for="zip-id">Zip</label>
+              <input [(ngModel)]="customer.address.zip" id="zip-id" type="text" name="zip" class="form-control">
+            </div>
+            <div class="form-group col-5">
+              <label for="country-id">Country</label>
+              <input [(ngModel)]="customer.address.country" id="country-id" type="text" name="country" class="form-control">
+            </div>
+            <div class="form-group col-5">
+              <label for="city-id">City</label>
+              <input [(ngModel)]="customer.address.city" id="city-id" type="text" name="city" class="form-control">
+            </div>
+            <div class="form-group col-12">
+              <label for="street-id">Street</label>
+              <input [(ngModel)]="customer.address.street" id="street-id" type="text" name="street" class="form-control">
+            </div>
+            <div class="form-group col-12">
+              <label for="notes-id">Notes</label>
+              <input [(ngModel)]="customer.address.notes" id="notes-id" type="text" name="notes" class="form-control" >
+            </div>
+          </div>
+
+          <button *ngIf="customer.id!==0" (click)="onUpdate(customer)" type="submit" class="btn btn-primary pull-right">Update
+            Customer</button>
+          <button *ngIf="customer.id===0" (click)="onCreate(customer)" type="submit" class="btn btn-primary pull-right">Create
+            Customer</button>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+
+  </div>
+</div>

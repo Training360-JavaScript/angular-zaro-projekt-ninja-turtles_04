@@ -1,1 +1,50 @@
-<p>{{category$ | async | json }}</p>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title" *ngIf="category$ | async">Edit Category</h4>
+        <h4 class="card-title" *ngIf="!(category$ | async)">Add New Category</h4>
+
+      </div>
+      <div class="card-body">
+        <form #billForm="ngForm">
+          <input type="hidden" name="id" [(ngModel)]="category.id">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating h5 text-secondary">Category ID *</label>
+                <input type="number" class="form-control" name="categoryId" [(ngModel)]="category.id">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating h5 text-secondary">Name *</label>
+                <input type="number" class="form-control" name="name" [(ngModel)]="category.name">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating h5 text-secondary">Description *</label>
+                <input type="string" class="form-control" name="description" [(ngModel)]="category.description">
+              </div>
+            </div>
+          </div>
+
+
+          <button *ngIf="category.id!==0" (click)="onUpdate(category)" type="submit" class="btn btn-primary pull-right">Update
+            Category</button>
+          <button *ngIf="category.id===0" (click)="onCreate(category)" type="submit" class="btn btn-primary pull-right">Create
+            Category</button>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+
+  </div>
+</div>
