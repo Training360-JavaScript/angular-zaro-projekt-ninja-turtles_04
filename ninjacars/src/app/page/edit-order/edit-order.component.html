@@ -2,8 +2,8 @@
   <div class="col-md-8">
     <div class="card">
       <div class="card-header card-header-primary">
-        <h4 class="card-title" *ngIf="order$ | async">Edit Customer</h4>
-        <h4 class="card-title" *ngIf="!(order$ | async)">Add New Customer</h4>
+        <h4 class="card-title" *ngIf="order$ | async">Edit Order</h4>
+        <h4 class="card-title" *ngIf="!(order$ | async)">Add New Order</h4>
 
       </div>
       <div class="card-body">
@@ -43,7 +43,6 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label class="bmd-label-floating">Status</label>
                 <select class="form-control" name="status" id="status" [(ngModel)]="order.status">
                   <option value="new" class="form-control">New</option>
                   <option value="shipped" class="form-control">Shipped</option>
