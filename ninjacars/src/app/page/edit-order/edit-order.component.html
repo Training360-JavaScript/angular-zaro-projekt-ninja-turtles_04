@@ -1,1 +1,68 @@
-<p>{{ order$ |async|json }}</p>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title" *ngIf="order$ | async">Edit Customer</h4>
+        <h4 class="card-title" *ngIf="!(order$ | async)">Add New Customer</h4>
+
+      </div>
+      <div class="card-body">
+        <form #billForm="ngForm">
+          <input type="hidden" name="id" [(ngModel)]="order.id">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating h5 text-secondary">Order ID *</label>
+                <input type="number" class="form-control" name="orderId" [(ngModel)]="order.id">
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5 text-secondary">ID *</h3>
+          <div class="row">
+            <div class="form-group col-6">
+                <label class="bmd-label-floating">Customer ID</label>
+                <input type="number" class="form-control" name="customerId" [(ngModel)]="order.customerID">
+            </div>
+            <div class="form-group col-6">
+                <label class="bmd-label-floating">Product ID</label>
+                <input type="number" class="form-control" name="productID" [(ngModel)]="order.productID">
+            </div>
+          </div>
+
+          <h3 class="h5 text-secondary">Amount *</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="number" class="form-control" name="amount" [(ngModel)]="order.amount">
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5 text-secondary">Status *</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating">Status</label>
+                <select class="form-control" name="status" id="status" [(ngModel)]="order.status">
+                  <option value="new" class="form-control">New</option>
+                  <option value="shipped" class="form-control">Shipped</option>
+                  <option value="paid" class="form-control">Paid</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button *ngIf="order.id!==0" (click)="onUpdate(order)" type="submit" class="btn btn-primary pull-right">Update
+            Order</button>
+          <button *ngIf="order.id===0" (click)="onCreate(order)" type="submit" class="btn btn-primary pull-right">Create
+            Order</button>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+
+  </div>
+</div>

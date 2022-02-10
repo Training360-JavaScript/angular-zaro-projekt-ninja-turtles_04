@@ -13,6 +13,8 @@ export class EditOrderComponent implements OnInit {
 
   order$!: Observable<Order>
 
+  order: Order = new Order();
+
   constructor(private orderService: OrderService,
     private route: ActivatedRoute) { }
 
@@ -20,6 +22,17 @@ export class EditOrderComponent implements OnInit {
     this.route.params.subscribe({
       next: param => this.order$ = this.orderService.getOne(param['id'])
     })
+    this.order$.subscribe({
+      next: order => this.order = order ? order : this.order
+    })
+  }
+
+  onUpdate(order: Order) {
+    this.orderService.update(order)
+  }
+
+  onCreate(order: Order) {
+    this.orderService.create(order)
   }
 
 }

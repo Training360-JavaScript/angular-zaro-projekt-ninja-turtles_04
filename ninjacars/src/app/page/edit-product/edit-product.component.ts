@@ -13,6 +13,8 @@ export class EditProductComponent implements OnInit {
 
   product$!: Observable<Product>
 
+  product: Product = new Product();
+
   constructor(private productService: ProductService,
     private route: ActivatedRoute
     ) { }
@@ -21,9 +23,16 @@ export class EditProductComponent implements OnInit {
     this.route.params.subscribe({
       next: param => this.product$ = this.productService.getOne(param['id'])
     })
+    this.product$.subscribe({
+      next: product => this.product = product ? product : this.product
+    })
   }
 
+  onUpdate(product: Product) {
+    this.productService.update(product)
+  }
 
-
-
+  onCreate(product: Product) {
+    this.productService.create(product)
+  }
 }

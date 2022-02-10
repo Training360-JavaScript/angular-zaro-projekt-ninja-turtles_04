@@ -9,26 +9,29 @@
       <div class="card-body">
         <form #billForm="ngForm">
           <input type="hidden" name="id" [(ngModel)]="bill.id">
+
+          <h3 class="h5 text-secondary">Order ID *</h3>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label class="bmd-label-floating">Order ID</label>
                 <input type="number" class="form-control" name="orderId" [(ngModel)]="bill.orderID">
               </div>
             </div>
           </div>
+
+          <h3 class="h5 text-secondary">Amount *</h3>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label class="bmd-label-floating">Amount</label>
                 <input type="number" class="form-control" name="amount" [(ngModel)]="bill.amount">
               </div>
             </div>
           </div>
+
+          <h3 class="h5 text-secondary">Status *</h3>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label class="bmd-label-floating">Status</label>
                 <select class="form-control" name="status" id="status" [(ngModel)]="bill.status">
                   <option value="new" class="form-control">New</option>
                   <option value="paid" class="form-control">Paid</option>
