@@ -61,6 +61,26 @@ const routes: Routes = [
     path: '**',
     component: DashboardComponent,
   },
+  {
+    path: 'new/product',
+    component: EditProductComponent,
+  },
+  {
+    path: 'new/category',
+    component: EditCategoryComponent,
+  },
+  {
+    path: 'new/customer',
+    component: EditCustomerComponent,
+  },
+  {
+    path: 'new/order',
+    component: EditOrderComponent,
+  },
+  {
+    path: 'new/bill',
+    component: EditBillComponent,
+  },
   //valószínűleg innentől felesleges
   {
     path: 'delete/product/:id',

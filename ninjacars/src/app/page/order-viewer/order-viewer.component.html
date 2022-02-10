@@ -10,6 +10,12 @@
 <div class="col-8 mb-5 input_container">
   <input [(ngModel)]="phrase" type="text" class="form-control" placeholder="Search...">
 </div>
+
+<div>
+  <button type="button" class="btn btn-success col-12" [routerLink]="['/new/order']">Add new
+    item</button>
+</div>
+
 <div class="row">
   <div class="col-12">
     <table class="table">
