@@ -36,7 +36,11 @@
           <td>{{ item.price }}</td>
           <td>{{ item.featured }}</td>
           <td>{{ item.active }}</td>
-          <td><button class=" btn-info"><i class="fa fa-address-card" aria-hidden="true"></i></button></td>
+          <td><button class="btn btn-warning" [routerLink]="['/edit/product/', item.id ]">Edit item<i
+                class="fa fa-address-card" aria-hidden="true"></i></button>
+            <button class="btn btn-danger" [routerLink]="['/delete/product/', item.id ]">Delete item <i
+                class="fa fa-trash" aria-hidden="true"></i></button>
+          </td>
         </tr>
       </tbody>
     </table>

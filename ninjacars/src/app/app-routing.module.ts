@@ -57,6 +57,31 @@ const routes: Routes = [
     path: 'edit/bill/:id',
     component: EditBillComponent,
   },
+  {
+    path: '**',
+    component: DashboardComponent,
+  },
+  //valószínűleg innentől felesleges
+  {
+    path: 'delete/product/:id',
+    component: EditProductComponent,
+  },
+  {
+    path: 'delete/category/:id',
+    component: EditCategoryComponent,
+  },
+  {
+    path: 'delete/customer/:id',
+    component: EditCustomerComponent,
+  },
+  {
+    path: 'delete/order/:id',
+    component: EditOrderComponent,
+  },
+  {
+    path: 'delete/bill/:id',
+    component: EditBillComponent,
+  },
 ];
 
 @NgModule({

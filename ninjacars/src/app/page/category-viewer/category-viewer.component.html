@@ -26,7 +26,11 @@
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.description }}</td>
-          <td><button class=" btn-info"><i class="fa fa-address-card" aria-hidden="true"></i></button></td>
+          <td><button class="btn btn-warning" [routerLink]="['/edit/category/', item.id ]">Edit item<i
+                class="fa fa-address-card" aria-hidden="true"></i></button>
+            <button class="btn btn-danger" [routerLink]="['/delete/category/', item.id ]">Delete item <i
+                class="fa fa-trash" aria-hidden="true"></i></button>
+          </td>
         </tr>
       </tbody>
     </table>
