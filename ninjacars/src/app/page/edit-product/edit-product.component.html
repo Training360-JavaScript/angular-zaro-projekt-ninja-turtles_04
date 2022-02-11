@@ -58,24 +58,22 @@
           <h3 class="h5 text-secondary">Conditions *</h3>
           <div class="row">
             <div class="form-group col-6">
-                <label class="bmd-label-floating">Featured</label>
-                <select class="form-control" name="status" id="status" [(ngModel)]="product.featured" required>
-                  <option value="true" class="form-control">True</option>
-                  <option value="false" class="form-control">False</option>
-                </select>
+              <label for="featured" class="bmd-label-floating">Featured</label>
+              <input class="form-control" type="checkbox" name="featured" id="featured" [(ngModel)]="product.featured">
             </div>
             <div class="form-group col-6">
-                <label class="bmd-label-floating">Active</label>
-                <select class="form-control" name="status" id="status" [(ngModel)]="product.active" required>
-                  <option value="true" class="form-control">True</option>
-                  <option value="false" class="form-control">False</option>
-                </select>
+              <label for="status" class="bmd-label-floating">Active</label>
+              <input type="checkbox" class="form-control" name="status" id="status" [(ngModel)]="product.active">
+
+
             </div>
           </div>
 
-          <button *ngIf="product.id!==0" (click)="onUpdate(product)" type="submit" class="btn btn-primary pull-right">Update
+          <button *ngIf="product.id!==0" (click)="onUpdate(product)" type="submit"
+            class="btn btn-primary pull-right">Update
             Product</button>
-          <button *ngIf="product.id===0" (click)="onCreate(product)" type="submit" class="btn btn-primary pull-right">Create
+          <button *ngIf="product.id===0" (click)="onCreate(product)" type="submit"
+            class="btn btn-primary pull-right">Create
             Product</button>
           <div class="clearfix"></div>
         </form>

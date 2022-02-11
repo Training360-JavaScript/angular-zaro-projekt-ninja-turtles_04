@@ -13,12 +13,12 @@
           <h3 class="h5 text-secondary">Full Name *</h3>
           <div class="row">
             <div class="form-group col-6">
-                <label class="bmd-label-floating">First Name</label>
-                <input type="text" class="form-control" name="firstName" [(ngModel)]="customer.firstName" required>
+              <label class="bmd-label-floating">First Name</label>
+              <input type="text" class="form-control" name="firstName" [(ngModel)]="customer.firstName" required>
             </div>
             <div class="form-group col-6">
-                <label class="bmd-label-floating">Last Name</label>
-                <input type="text" class="form-control" name="lastName" [(ngModel)]="customer.lastName" required>
+              <label class="bmd-label-floating">Last Name</label>
+              <input type="text" class="form-control" name="lastName" [(ngModel)]="customer.lastName" required>
             </div>
           </div>
 
@@ -54,10 +54,20 @@
               <input [(ngModel)]="customer.address.notes" type="text" name="notes" class="form-control" required>
             </div>
           </div>
+          <div class="row">
+            <div class="form-group col-6">
+              <label for="status" class="bmd-label-floating">Active</label>
+              <input type="checkbox" class="form-control" name="status" id="status" [(ngModel)]="customer.active">
 
-          <button *ngIf="customer.id!==0" (click)="onUpdate(customer)" type="submit" class="btn btn-primary pull-right">Update
+
+            </div>
+          </div>
+
+          <button *ngIf="customer.id!==0" (click)="onUpdate(customer)" type="submit"
+            class="btn btn-primary pull-right">Update
             Customer</button>
-          <button *ngIf="customer.id===0" (click)="onCreate(customer)" type="submit" class="btn btn-primary pull-right">Create
+          <button *ngIf="customer.id===0" (click)="onCreate(customer)" type="submit"
+            class="btn btn-primary pull-right">Create
             Customer</button>
           <div class="clearfix"></div>
         </form>
