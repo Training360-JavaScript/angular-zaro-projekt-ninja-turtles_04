@@ -9,19 +9,13 @@
       <div class="card-body">
         <form #billForm="ngForm">
           <input type="hidden" name="id" [(ngModel)]="category.id">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="bmd-label-floating h5 text-secondary">Category ID *</label>
-                <input type="number" class="form-control" name="categoryId" [(ngModel)]="category.id">
-              </div>
-            </div>
-          </div>
+
+
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <label class="bmd-label-floating h5 text-secondary">Name *</label>
-                <input type="number" class="form-control" name="name" [(ngModel)]="category.name">
+                <input type="text" class="form-control" name="name" [(ngModel)]="category.name">
               </div>
             </div>
           </div>
@@ -35,9 +29,11 @@
           </div>
 
 
-          <button *ngIf="category.id!==0" (click)="onUpdate(category)" type="submit" class="btn btn-primary pull-right">Update
+          <button *ngIf="category.id!==0" (click)="onUpdate(category)" type="submit"
+            class="btn btn-primary pull-right">Update
             Category</button>
-          <button *ngIf="category.id===0" (click)="onCreate(category)" type="submit" class="btn btn-primary pull-right">Create
+          <button *ngIf="category.id===0" (click)="onCreate(category)" type="submit"
+            class="btn btn-primary pull-right">Create
             Category</button>
           <div class="clearfix"></div>
         </form>
