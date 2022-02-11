@@ -14,7 +14,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="string" class="form-control" name="name" [(ngModel)]="product.name" required>
+                <input type="text" class="form-control" name="name" [(ngModel)]="product.name" required>
               </div>
             </div>
           </div>
@@ -23,7 +23,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="string" class="form-control" name="type" [(ngModel)]="product.type" required>
+                <input type="text" class="form-control" name="type" [(ngModel)]="product.type" required>
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="string" class="form-control" name="description" [(ngModel)]="product.description" required>
+                <input type="text" class="form-control" name="description" [(ngModel)]="product.description" required>
               </div>
             </div>
           </div>
@@ -59,11 +59,17 @@
           <div class="row">
             <div class="form-group col-6">
                 <label class="bmd-label-floating">Featured</label>
-                <input type="boolean" class="form-control" name="featured" [(ngModel)]="product.featured" required>
+                <select class="form-control" name="status" id="status" [(ngModel)]="product.featured" required>
+                  <option value="new" class="form-control">True</option>
+                  <option value="shipped" class="form-control">False</option>
+                </select>
             </div>
             <div class="form-group col-6">
                 <label class="bmd-label-floating">Active</label>
-                <input type="string" class="form-control" name="active" [(ngModel)]="product.active" required>
+                <select class="form-control" name="status" id="status" [(ngModel)]="product.active" required>
+                  <option value="new" class="form-control">True</option>
+                  <option value="shipped" class="form-control">False</option>
+                </select>
             </div>
           </div>
 

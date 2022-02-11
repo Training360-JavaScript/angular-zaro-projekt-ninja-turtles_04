@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
@@ -16,7 +16,9 @@ export class EditCustomerComponent implements OnInit {
   customer: Customer = new Customer();
 
   constructor(private customerService: CustomerService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe({
@@ -28,11 +30,15 @@ export class EditCustomerComponent implements OnInit {
   }
 
   onUpdate(customer: Customer) {
-    this.customerService.update(customer)
+    this.customerService.update(customer).subscribe(
+      customer => this.router.navigate(['/', 'customers']),
+    )
   }
 
   onCreate(customer: Customer) {
-    this.customerService.create(customer)
+    this.customerService.create(customer).subscribe(
+      customer => this.router.navigate(['/', 'customers']),
+    )
   }
 
 }
