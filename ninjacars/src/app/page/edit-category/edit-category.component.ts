@@ -1,5 +1,5 @@
 import { Category } from './../../model/category';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CategoryService } from 'src/app/service/category.service';
@@ -15,7 +15,8 @@ export class EditCategoryComponent implements OnInit {
   category: Category = new Category();
 
   constructor(private categoryService: CategoryService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -28,11 +29,15 @@ export class EditCategoryComponent implements OnInit {
   }
 
   onUpdate(category: Category) {
-    this.categoryService.update(category)
+    this.categoryService.update(category).subscribe(
+      category => this.router.navigate(['/', 'category']),
+    )
   }
 
   onCreate(category: Category) {
-    this.categoryService.create(category)
+    this.categoryService.create(category).subscribe(
+      category => this.router.navigate(['/', 'categories']),
+    )
   }
 
 }

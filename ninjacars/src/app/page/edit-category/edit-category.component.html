@@ -10,32 +10,20 @@
         <form #billForm="ngForm">
           <input type="hidden" name="id" [(ngModel)]="category.id">
 
-
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="bmd-label-floating h5 text-secondary">Category ID *</label>
-                <input type="number" class="form-control" name="categoryId" [(ngModel)]="category.id" required>
-              </div>
-            </div>
-          </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <label class="bmd-label-floating h5 text-secondary">Name *</label>
-
-                <input type="text" class="form-control" name="name" [(ngModel)]="category.name">
-
-                <input type="number" class="form-control" name="name" [(ngModel)]="category.name" required>
+                <input type="text" class="form-control" name="name" [(ngModel)]="category.name" required>
               </div>
             </div>
           </div>
+
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <label class="bmd-label-floating h5 text-secondary">Description *</label>
-                <input type="string" class="form-control" name="description" [(ngModel)]="category.description" required>
+                <input type="text" class="form-control" name="description" [(ngModel)]="category.description" required>
               </div>
             </div>
           </div>

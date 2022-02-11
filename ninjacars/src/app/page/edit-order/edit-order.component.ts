@@ -2,7 +2,7 @@ import { Order } from './../../model/order';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/service/order.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-order',
@@ -16,7 +16,9 @@ export class EditOrderComponent implements OnInit {
   order: Order = new Order();
 
   constructor(private orderService: OrderService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe({
@@ -28,11 +30,15 @@ export class EditOrderComponent implements OnInit {
   }
 
   onUpdate(order: Order) {
-    this.orderService.update(order)
+    this.orderService.update(order).subscribe(
+      order => this.router.navigate(['/', 'orders']),
+    )
   }
 
   onCreate(order: Order) {
-    this.orderService.create(order)
+    this.orderService.create(order).subscribe(
+      order => this.router.navigate(['/', 'orders']),
+    )
   }
 
 }

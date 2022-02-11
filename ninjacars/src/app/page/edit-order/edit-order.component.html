@@ -9,14 +9,6 @@
       <div class="card-body">
         <form #billForm="ngForm">
           <input type="hidden" name="id" [(ngModel)]="order.id">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="bmd-label-floating h5 text-secondary">Order ID *</label>
-                <input type="number" class="form-control" name="orderId" [(ngModel)]="order.id" required>
-              </div>
-            </div>
-          </div>
 
           <h3 class="h5 text-secondary">ID *</h3>
           <div class="row">
