@@ -8,13 +8,13 @@
       </div>
       <div class="card-body">
         <form #billForm="ngForm">
-          <input type="hidden" name="id" [(ngModel)]="bill.id">
+          <input type="hidden" name="id" [(ngModel)]="bill.id" required>
 
           <h3 class="h5 text-secondary">Order ID *</h3>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="number" class="form-control" name="orderId" [(ngModel)]="bill.orderID">
+                <input type="number" class="form-control" name="orderId" [(ngModel)]="bill.orderID" required>
               </div>
             </div>
           </div>
@@ -23,7 +23,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="number" class="form-control" name="amount" [(ngModel)]="bill.amount">
+                <input type="number" class="form-control" name="amount" [(ngModel)]="bill.amount" required>
               </div>
             </div>
           </div>
@@ -32,7 +32,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <select class="form-control" name="status" id="status" [(ngModel)]="bill.status">
+                <select class="form-control" name="status" id="status" [(ngModel)]="bill.status" required>
                   <option value="new" class="form-control">New</option>
                   <option value="paid" class="form-control">Paid</option>
 

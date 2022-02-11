@@ -13,7 +13,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label class="bmd-label-floating h5 text-secondary">Customer ID *</label>
-                <input type="number" class="form-control" name="orderId" [(ngModel)]="customer.id">
+                <input type="number" class="form-control" name="orderId" [(ngModel)]="customer.id" required>
               </div>
             </div>
           </div>
@@ -22,11 +22,11 @@
           <div class="row">
             <div class="form-group col-6">
                 <label class="bmd-label-floating">First Name</label>
-                <input type="string" class="form-control" name="firstName" [(ngModel)]="customer.firstName">
+                <input type="string" class="form-control" name="firstName" [(ngModel)]="customer.firstName" required>
             </div>
             <div class="form-group col-6">
                 <label class="bmd-label-floating">Last Name</label>
-                <input type="string" class="form-control" name="lastName" [(ngModel)]="customer.lastName">
+                <input type="string" class="form-control" name="lastName" [(ngModel)]="customer.lastName" required>
             </div>
           </div>
 
@@ -34,7 +34,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="string" class="form-control" name="email" [(ngModel)]="customer.email">
+                <input type="string" class="form-control" name="email" [(ngModel)]="customer.email" required>
               </div>
             </div>
           </div>
@@ -43,23 +43,23 @@
           <div class="row">
             <div class="form-group col-2">
               <label for="zip-id">Zip</label>
-              <input [(ngModel)]="customer.address.zip" id="zip-id" type="text" name="zip" class="form-control">
+              <input [(ngModel)]="customer.address.zip" id="zip-id" type="text" name="zip" class="form-control" required>
             </div>
             <div class="form-group col-5">
               <label for="country-id">Country</label>
-              <input [(ngModel)]="customer.address.country" id="country-id" type="text" name="country" class="form-control">
+              <input [(ngModel)]="customer.address.country" id="country-id" type="text" name="country" class="form-control" required>
             </div>
             <div class="form-group col-5">
               <label for="city-id">City</label>
-              <input [(ngModel)]="customer.address.city" id="city-id" type="text" name="city" class="form-control">
+              <input [(ngModel)]="customer.address.city" id="city-id" type="text" name="city" class="form-control" required>
             </div>
             <div class="form-group col-12">
               <label for="street-id">Street</label>
-              <input [(ngModel)]="customer.address.street" id="street-id" type="text" name="street" class="form-control">
+              <input [(ngModel)]="customer.address.street" id="street-id" type="text" name="street" class="form-control" required>
             </div>
             <div class="form-group col-12">
               <label for="notes-id">Notes</label>
-              <input [(ngModel)]="customer.address.notes" id="notes-id" type="text" name="notes" class="form-control" >
+              <input [(ngModel)]="customer.address.notes" id="notes-id" type="text" name="notes" class="form-control" required>
             </div>
           </div>
 
