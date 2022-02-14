@@ -13,6 +13,7 @@ import { BillService } from 'src/app/service/bill.service';
 export class DashboardComponent implements OnInit {
 
   NumberOfActiveProducts$: Observable<number> = this.productService.getActiveProducts()
+  NumberOfInActiveProducts$: Observable<number> = this.productService.getInActiveProducts()
   NumberOfActiveCustomers$: Observable<number> = this.customerService.getActiveCustomers()
   NumberOfUnpaidOrders$: Observable<number> = this.orderService.getUnpaidOrders()
   SumOfUnpaidBills$: Observable<number> = this.billService.getSumOfUnpaidBills()

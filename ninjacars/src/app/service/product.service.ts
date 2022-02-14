@@ -19,5 +19,8 @@ export class ProductService extends BaseService<Product> {
    getActiveProducts(): Observable<number> {
     return  this.getAll().pipe(map(products => products.filter(i => i.active).length))
    }
+   getInActiveProducts(): Observable<number> {
+    return  this.getAll().pipe(map(products => products.filter(i => !i.active).length))
+   }
 
 }
