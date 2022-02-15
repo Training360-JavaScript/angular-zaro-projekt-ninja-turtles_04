@@ -17,10 +17,15 @@ export class DashboardComponent implements OnInit {
 
   NumberOfActiveCustomers$: Observable<number> = this.customerService.getActiveCustomers()
   NumberOfInactiveCustomers$:  Observable<number> = this.customerService.getInactiveCustomers()
-  
-  NumberOfUnpaidOrders$: Observable<number> = this.orderService.getUnpaidOrders()
-  SumOfUnpaidBills$: Observable<number> = this.billService.getSumOfUnpaidBills()
 
+  NumberOfUnpaidOrders$: Observable<number> = this.orderService.getUnpaidOrders()
+  NewOrders$: Observable<number> = this.orderService.getNumberOfOrdersByStatus("new")
+  PaidOrders$: Observable<number> = this.orderService.getNumberOfOrdersByStatus("paid")
+  ShippedOrders$: Observable<number> = this.orderService.getNumberOfOrdersByStatus("shipped")
+
+  SumOfUnpaidBills$: Observable<number> = this.billService.getSumOfBillsByStatus("new")
+  SumOfPaidBills$: Observable<number> = this.billService.getSumOfBillsByStatus("paid")
+  
   constructor(
     private productService: ProductService,
     private customerService: CustomerService,

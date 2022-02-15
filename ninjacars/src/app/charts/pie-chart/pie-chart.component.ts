@@ -9,7 +9,7 @@ import { ChartsModule, WavesModule } from 'angular-bootstrap-md'
 })
 export class PieChartComponent implements OnInit {
 
-  public chartType: string = 'pie';
+  @Input() chartType: string = 'pie';
 
   @Input() chartDatasets: Array<any> = [
     { data: [300, 50, 100, 40, 120], label: 'My First dataset' }
