@@ -7,18 +7,28 @@
 
       </div>
       <div class="card-body">
-        <form #billForm="ngForm">
+        <form #customerForm="ngForm">
           <input type="hidden" name="id" [(ngModel)]="customer.id">
 
           <h3 class="h5 text-secondary">Full Name *</h3>
           <div class="row">
             <div class="form-group col-6">
               <label class="bmd-label-floating">First Name</label>
-              <input type="text" class="form-control" name="firstName" [(ngModel)]="customer.firstName" required>
+              <input type="text" class="form-control" name="firstName" [(ngModel)]="customer.firstName" required
+                pattern="^[a-űA-Ű]{3,20}$">
+              <div [hidden]="customerForm.controls['firstName']?.valid" class="alert alert-danger" role="alert">
+                The first name must be at least 3 letters!
+              </div>
             </div>
+
+
             <div class="form-group col-6">
               <label class="bmd-label-floating">Last Name</label>
-              <input type="text" class="form-control" name="lastName" [(ngModel)]="customer.lastName" required>
+              <input type="text" class="form-control" name="lastName" [(ngModel)]="customer.lastName" required
+                pattern="^[a-űA-Ű]{3,20}$">
+            </div>
+            <div [hidden]="customerForm.controls['lastName']?.valid" class="alert alert-danger" role="alert">
+              The last name must be at least 3 letters!
             </div>
           </div>
 
@@ -26,8 +36,12 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="email" class="form-control" name="email" [(ngModel)]="customer.email" required>
+                <input type="email" class="form-control" name="email" [(ngModel)]="customer.email" required ngModel
+                  [email]="true">
               </div>
+            </div>
+            <div [hidden]="customerForm.controls['email']?.valid" class="alert alert-danger" role="alert">
+              The format of the email must be valid!
             </div>
           </div>
 
@@ -35,38 +49,56 @@
           <div class="row">
             <div class="form-group col-2">
               <label for="zip-id">Zip</label>
-              <input [(ngModel)]="customer.address.zip" type="text" name="zip" class="form-control" required>
+              <input [(ngModel)]="customer.address.zip" type="number" name="zip" class="form-control" required
+                pattern="^[0-9]{1,5}$">
+              <div [hidden]="customerForm.controls['zip']?.valid" class="alert alert-danger" role="alert">
+                The format of the zip must be valid!
+              </div>
             </div>
             <div class="form-group col-5">
               <label for="country-id">Country</label>
-              <input [(ngModel)]="customer.address.country" type="text" name="country" class="form-control" required>
+              <input [(ngModel)]="customer.address.country" type="text" name="country" class="form-control" required
+                pattern="^[a-űA-Ű]{5,20}$">
+              <div [hidden]="customerForm.controls['country']?.valid" class="alert alert-danger" role="alert">
+                The format of the country must be valid!
+              </div>
             </div>
             <div class="form-group col-5">
               <label for="city-id">City</label>
-              <input [(ngModel)]="customer.address.city" type="text" name="city" class="form-control" required>
+              <input [(ngModel)]="customer.address.city" type="text" name="city" class="form-control" required
+                pattern="^[a-űA-Ű]{5,20}$">
+              <div [hidden]="customerForm.controls['city']?.valid" class="alert alert-danger" role="alert">
+                The format of the city must be valid!
+              </div>
             </div>
             <div class="form-group col-12">
               <label for="street-id">Street</label>
-              <input [(ngModel)]="customer.address.street" type="text" name="street" class="form-control" required>
+              <input [(ngModel)]="customer.address.street" type="text" name="street" class="form-control" required
+                pattern="^[a-űA-Ű]{5,20}$">
+              <div [hidden]="customerForm.controls['street']?.valid" class="alert alert-danger" role="alert">
+                The format of the street must be valid!
+              </div>
             </div>
             <div class="form-group col-12">
               <label for="notes-id">Notes</label>
-              <input [(ngModel)]="customer.address.notes" type="text" name="notes" class="form-control" required>
+              <input [(ngModel)]="customer.address.notes" type="text" name="notes" class="form-control" required
+                pattern="^[a-űA-Ű]{5,20}$">
+              <div [hidden]="customerForm.controls['notes']?.valid" class="alert alert-danger" role="alert">
+                The last name must be at least 5 letters!
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="form-group col-6">
               <label for="status" class="bmd-label-floating">Active</label>
               <input type="checkbox" class="form-control" name="status" id="status" [(ngModel)]="customer.active">
-
-
             </div>
           </div>
 
-          <button *ngIf="customer.id!==0" (click)="onUpdate(customer)" type="submit"
+          <button *ngIf="customer.id!==0" (click)="onUpdate(customer)" [disabled]="customerForm.invalid" type="submit"
             class="btn btn-primary pull-right">Update
             Customer</button>
-          <button *ngIf="customer.id===0" (click)="onCreate(customer)" type="submit"
+          <button *ngIf="customer.id===0" (click)="onCreate(customer)" [disabled]="customerForm.invalid" type="submit"
             class="btn btn-primary pull-right">Create
             Customer</button>
           <div class="clearfix"></div>

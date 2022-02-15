@@ -7,14 +7,18 @@
 
       </div>
       <div class="card-body">
-        <form #billForm="ngForm">
+        <form #productForm="ngForm">
           <input type="hidden" name="id" [(ngModel)]="product.id">
 
           <h3 class="h5 text-secondary">Name *</h3>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="text" class="form-control" name="name" [(ngModel)]="product.name" required>
+                <input type="text" class="form-control" name="name" [(ngModel)]="product.name" required
+                  pattern="^[a-űA-Ű]{5,20}$">
+              </div>
+              <div [hidden]="productForm.controls['name']?.valid" class="alert alert-danger" role="alert">
+                The name must be at least 5 letters!
               </div>
             </div>
           </div>
@@ -23,7 +27,11 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="text" class="form-control" name="type" [(ngModel)]="product.type" required>
+                <input type="text" class="form-control" name="type" [(ngModel)]="product.type" required
+                  pattern="^[a-űA-Ű]{5,20}$">
+              </div>
+              <div [hidden]="productForm.controls['type']?.valid" class="alert alert-danger" role="alert">
+                The type must be at least 5 letters!
               </div>
             </div>
           </div>
@@ -32,7 +40,11 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="number" class="form-control" name="catID" [(ngModel)]="product.catId" required>
+                <input type="number" class="form-control" name="catID" [(ngModel)]="product.catId" required
+                  pattern="^[0-9]{1,5}$">
+              </div>
+              <div [hidden]="productForm.controls['catID']?.valid" class="alert alert-danger" role="alert">
+                The id of the category cannot be zero!
               </div>
             </div>
           </div>
@@ -41,7 +53,11 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="text" class="form-control" name="description" [(ngModel)]="product.description" required>
+                <input type="text" class="form-control" name="description" [(ngModel)]="product.description" required
+                  pattern="^[a-űA-Ű ]{5,100}$">
+              </div>
+              <div [hidden]="productForm.controls['description']?.valid" class="alert alert-danger" role="alert">
+                The description must be at least 5 letters!
               </div>
             </div>
           </div>
@@ -50,7 +66,11 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="number" class="form-control" name="price" [(ngModel)]="product.price" required>
+                <input type="number" class="form-control" name="price" [(ngModel)]="product.price" required
+                  pattern="^[0-9]{1,5}$">
+              </div>
+              <div [hidden]="productForm.controls['price']?.valid" class="alert alert-danger" role="alert">
+                The price cannot be zero!
               </div>
             </div>
           </div>
@@ -64,15 +84,13 @@
             <div class="form-group col-6">
               <label for="status" class="bmd-label-floating">Active</label>
               <input type="checkbox" class="form-control" name="status" id="status" [(ngModel)]="product.active">
-
-
             </div>
           </div>
 
-          <button *ngIf="product.id!==0" (click)="onUpdate(product)" type="submit"
+          <button *ngIf="product.id!==0" (click)="onUpdate(product)" [disabled]="productForm.invalid" type="submit"
             class="btn btn-primary pull-right">Update
             Product</button>
-          <button *ngIf="product.id===0" (click)="onCreate(product)" type="submit"
+          <button *ngIf="product.id===0" (click)="onCreate(product)" [disabled]="productForm.invalid" type="submit"
             class="btn btn-primary pull-right">Create
             Product</button>
           <div class="clearfix"></div>

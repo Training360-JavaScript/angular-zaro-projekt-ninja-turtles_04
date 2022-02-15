@@ -14,7 +14,11 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="number" class="form-control" name="orderId" [(ngModel)]="bill.orderID" required>
+                <input type="number" class="form-control" name="orderId" [(ngModel)]="bill.orderID" required
+                  pattern="^[0-9]{1,5}$">
+              </div>
+              <div [hidden]="billForm.controls['orderId']?.valid" class="alert alert-danger" role="alert">
+                The id of the bill cannot be zero!
               </div>
             </div>
           </div>
@@ -23,7 +27,11 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="number" class="form-control" name="amount" [(ngModel)]="bill.amount" required>
+                <input type="number" class="form-control" name="amount" [(ngModel)]="bill.amount" required
+                  pattern="^[0-9]{1,5}$">
+              </div>
+              <div [hidden]="billForm.controls['amount']?.valid" class="alert alert-danger" role="alert">
+                The amount cannot be zero!
               </div>
             </div>
           </div>
@@ -35,16 +43,16 @@
                 <select class="form-control" name="status" id="status" [(ngModel)]="bill.status" required>
                   <option value="new" class="form-control">New</option>
                   <option value="paid" class="form-control">Paid</option>
-
                 </select>
               </div>
             </div>
           </div>
 
-
-          <button *ngIf="bill.id!==0" (click)="onUpdate(bill)" type="submit" class="btn btn-primary pull-right">Update
+          <button *ngIf="bill.id!==0" (click)="onUpdate(bill)" [disabled]="billForm.invalid" type="submit"
+            class="btn btn-primary pull-right">Update
             Bill</button>
-          <button *ngIf="bill.id===0" (click)="onCreate(bill)" type="submit" class="btn btn-primary pull-right">Create
+          <button *ngIf="bill.id===0" (click)="onCreate(bill)" [disabled]="billForm.invalid" type="submit"
+            class="btn btn-primary pull-right">Create
             Bill</button>
           <div class="clearfix"></div>
         </form>
