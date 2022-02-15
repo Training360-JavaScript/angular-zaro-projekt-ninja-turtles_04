@@ -14,9 +14,9 @@ export class BillService extends BaseService<Bill> {
     this.endString = 'bill'
   }
 
-  getSumOfUnpaidBills(): Observable<number> {
+  getSumOfBillsByStatus(status: string): Observable<number> {
     return this.getAll().pipe(map(bills => 
-      bills.filter(i => i.status !== "paid").map(bill => bill.amount)
+      bills.filter(i => i.status === status).map(bill => bill.amount)
       .reduce((a, b) => a + b)))
   }
 }
