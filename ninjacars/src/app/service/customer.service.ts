@@ -17,4 +17,7 @@ export class CustomerService extends BaseService<Customer> {
   getActiveCustomers(): Observable<number> {
     return  this.getAll().pipe(map(customers => customers.filter(i => i.active).length))
    }
+  getInactiveCustomers(): Observable<number> {
+    return  this.getAll().pipe(map(customers => customers.filter(i => !i.active).length))
+   }
 }
