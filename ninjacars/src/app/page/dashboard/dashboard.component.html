@@ -24,7 +24,7 @@
       <div class="card card-stats">
         <div class="card-header card-header-warning card-header-icon">
           <div class="card-icon">
-            <i class="material-icons">content_copy</i>
+            <i class="material-icons">local_mall</i>
           </div>
           <p class="card-category">Number of active products:</p>
           <h3 class="card-title">{{ NumberOfActiveProducts$ | async }}
@@ -32,10 +32,10 @@
           </h3>
         </div>
         <div class="card-footer">
-          <div class="stats">
+          <!-- <div class="stats">
             <i class="material-icons text-danger">warning</i>
             <a href="javascript:;">Get More Space...</a>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
       <div class="card card-stats">
         <div class="card-header card-header-success card-header-icon">
           <div class="card-icon">
-            <i class="material-icons">store</i>
+            <i class="material-icons">account_circle</i>
           </div>
           <p class="card-category">Number of active customers:</p>
           <h3 class="card-title"> {{ NumberOfActiveCustomers$ | async }}
@@ -52,9 +52,9 @@
           </h3>
         </div>
         <div class="card-footer">
-          <div class="stats">
+          <!-- <div class="stats">
             <i class="material-icons">date_range</i> Last 24 Hours
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -63,7 +63,7 @@
       <div class="card card-stats">
         <div class="card-header card-header-danger card-header-icon">
           <div class="card-icon">
-            <i class="material-icons">info_outline</i>
+            <i class="material-icons">pending_actions</i>
           </div>
           <p class="card-category">Number of unpaid orders:</p>
           <h3 class="card-title">{{ NumberOfUnpaidOrders$ | async }}
@@ -71,9 +71,9 @@
           </h3>
         </div>
         <div class="card-footer">
-          <div class="stats">
+          <!-- <div class="stats">
             <i class="material-icons">local_offer</i> Tracked from VIPServer
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -82,7 +82,9 @@
       <div class="card card-stats">
         <div class="card-header card-header-info card-header-icon">
           <div class="card-icon">
-            <i class="fa fa-twitter"></i>
+            <i class="material-icons">
+              request_quote
+            </i>
           </div>
           <p class="card-category">Sum of unpaid bills:</p>
           <h3 class="card-title">{{ SumOfUnpaidBills$ | async }}
@@ -90,9 +92,9 @@
           </h3>
         </div>
         <div class="card-footer">
-          <div class="stats">
+          <!-- <div class="stats">
             <i class="material-icons">update</i> Just Updated
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
