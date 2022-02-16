@@ -9,7 +9,7 @@ import { ChartsModule, WavesModule } from 'angular-bootstrap-md'
 })
 export class PieChartComponent implements OnInit {
 
-  public chartType: string = 'pie';
+  @Input() chartType: string = 'pie';
 
   @Input() chartDatasets: Array<any> = [
     { data: [300, 50, 100, 40, 120], label: 'My First dataset' }
@@ -17,7 +17,7 @@ export class PieChartComponent implements OnInit {
 
   @Input() chartLabels: Array<any> = ['Red', 'Green', 'Yellow', 'Grey', 'Dark Grey'];
 
-  public chartColors: Array<any> = [
+  @Input() chartColors: Array<any> = [
     {
       backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'],
       hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870', '#A8B3C5', '#616774'],

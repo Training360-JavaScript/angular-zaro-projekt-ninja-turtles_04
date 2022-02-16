@@ -17,4 +17,8 @@ export class OrderService extends BaseService<Order> {
   getUnpaidOrders(): Observable<number> {
     return this.getAll().pipe(map(orders => orders.filter(i => i.status !== "paid").length))
   }
+
+  getNumberOfOrdersByStatus(status: string): Observable<number> {
+    return this.getAll().pipe(map(orders => orders.filter(i => i.status === status).length))
+  }
 }

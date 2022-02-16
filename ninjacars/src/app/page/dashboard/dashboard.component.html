@@ -11,10 +11,6 @@
   <link rel="stylesheet" type="text/css"
     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- CSS Files -->
-  <link href="/src/assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="/src/assets/demo/demo.css" rel="stylesheet" />
 </head>
 
 <h1>Overview of the webshop</h1>
@@ -24,7 +20,7 @@
       <div class="card card-stats">
         <div class="card-header card-header-warning card-header-icon">
           <div class="card-icon">
-            <i class="material-icons">content_copy</i>
+            <i class="material-icons">local_mall</i>
           </div>
           <p class="card-category">Number of active products:</p>
           <h3 class="card-title">{{ NumberOfActiveProducts$ | async }}
@@ -32,10 +28,10 @@
           </h3>
         </div>
         <div class="card-footer">
-          <div class="stats">
+          <!-- <div class="stats">
             <i class="material-icons text-danger">warning</i>
             <a href="javascript:;">Get More Space...</a>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -44,7 +40,7 @@
       <div class="card card-stats">
         <div class="card-header card-header-success card-header-icon">
           <div class="card-icon">
-            <i class="material-icons">store</i>
+            <i class="material-icons">account_circle</i>
           </div>
           <p class="card-category">Number of active customers:</p>
           <h3 class="card-title"> {{ NumberOfActiveCustomers$ | async }}
@@ -52,9 +48,9 @@
           </h3>
         </div>
         <div class="card-footer">
-          <div class="stats">
+          <!-- <div class="stats">
             <i class="material-icons">date_range</i> Last 24 Hours
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -63,7 +59,7 @@
       <div class="card card-stats">
         <div class="card-header card-header-danger card-header-icon">
           <div class="card-icon">
-            <i class="material-icons">info_outline</i>
+            <i class="material-icons">pending_actions</i>
           </div>
           <p class="card-category">Number of unpaid orders:</p>
           <h3 class="card-title">{{ NumberOfUnpaidOrders$ | async }}
@@ -71,9 +67,9 @@
           </h3>
         </div>
         <div class="card-footer">
-          <div class="stats">
+          <!-- <div class="stats">
             <i class="material-icons">local_offer</i> Tracked from VIPServer
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -82,7 +78,9 @@
       <div class="card card-stats">
         <div class="card-header card-header-info card-header-icon">
           <div class="card-icon">
-            <i class="fa fa-twitter"></i>
+            <i class="material-icons">
+              request_quote
+            </i>
           </div>
           <p class="card-category">Sum of unpaid bills:</p>
           <h3 class="card-title">{{ SumOfUnpaidBills$ | async }}
@@ -90,17 +88,59 @@
           </h3>
         </div>
         <div class="card-footer">
-          <div class="stats">
+          <!-- <div class="stats">
             <i class="material-icons">update</i> Just Updated
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
   </div>
-
+</div>
+<div class="row">
   <div class="col-12 col-md-6 col-lg-3">
     <!-- <p>Number of active products: {{ NumberOfActiveProducts$ | async }}</p> -->
     <app-pie-chart
       [chartDatasets]="[{ data: [ NumberOfActiveProducts$ | async , NumberOfInActiveProducts$ | async], label: 'My First dataset' }]"
       [chartLabels]="['Active Products', 'Inactive Products']"></app-pie-chart>
   </div>
+  <div class="col-12 col-md-6 col-lg-3">
+
+    <app-pie-chart [chartType]="'doughnut'"
+      [chartDatasets]="[{ data: [ NumberOfActiveCustomers$ | async , NumberOfInactiveCustomers$ | async], label: 'My First dataset' }]"
+      [chartLabels]="['Active Customers', 'Inactive Customers']" [chartColors]="[{
+        backgroundColor: ['#FDB45C', '#949FB1'], 
+        hoverBackgroundColor:['#FFC870', '#A8B3C5'],
+        borderWidth: 4}]"></app-pie-chart>
+  </div>
+  <div class="col-12 col-md-6 col-lg-3">
+    <app-pie-chart [chartType]="'bar'"
+      [chartDatasets]="[{ data: [ NewOrders$ | async , PaidOrders$ | async, ShippedOrders$ | async], label: 'Number of Orders' }]"
+      [chartLabels]="['New orders', 'Paid orders', 'Shipped orders']" [chartColors]="[{
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)'
+        ], 
+        borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)'
+        ],
+        borderWidth: 1}]"></app-pie-chart>
+  </div>
+  <div class="col-12 col-md-6 col-lg-3">
+
+    <app-pie-chart [chartType]="'horizontalBar'"
+      [chartDatasets]="[{ data: [ SumOfUnpaidBills$ | async , SumOfPaidBills$ | async], label: 'Sum of bills' }]"
+      [chartLabels]="['New bills', 'Paid bills']" [chartColors]="[{
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.2)', 
+        'rgba(255, 159, 64, 0.2)'
+        ], 
+        borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1}]"></app-pie-chart>
+  </div>
+</div>
