@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,12 +46,16 @@ import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
     DashboardComponent,
     PieChartComponent,
   ],
-  imports: [BrowserModule,
-     AppRoutingModule,
-      HttpClientModule, 
-      FormsModule,
-      MDBBootstrapModule.forRoot()
-    ],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MDBBootstrapModule.forRoot(),
+    ToastrModule.forRoot(),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

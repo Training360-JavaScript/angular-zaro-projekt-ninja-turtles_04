@@ -17,11 +17,7 @@ export class BaseService<T extends { id: number }> {
   }
 
   getOne(id: number): Observable<T> {
-    // if (id === 0) {
-    //   return this.create(entity);
-    // } else {
     return this.http.get<T>(`${this.apiUrl}/${this.endString}/${id}`);
-    // }
   }
 
   create(product: T): Observable<T> {
