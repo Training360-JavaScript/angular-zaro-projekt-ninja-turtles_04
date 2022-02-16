@@ -3,7 +3,7 @@ import { BillService } from './../../service/bill.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-bill-viewer',
@@ -34,7 +34,7 @@ export class BillViewerComponent implements OnInit {
     private billService: BillService,
     private route: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
+    public notifyService : NotificationService
   ) {}
 
   ngOnInit(): void {}
@@ -42,16 +42,16 @@ export class BillViewerComponent implements OnInit {
   onDelete(bill: Bill) {
     this.billService.delete(bill).subscribe(
       (bill) => (this.bills$ = this.billService.getAll()),
-      (err) => this.showError,
-      this.showSuccess
+      (err) => this.showError(),
+      () => this.showSuccess()
     );
   }
 
   showSuccess() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
+    this.notifyService.showSuccess("Bill deleted successfully!!", "NinjaCars Ltd.")
   }
 
   showError() {
-    this.toastr.error('Hello world!', 'Toastr fun!');
+    this.notifyService.showError("Something is wrong", "NinjaCars Ltd.")
   }
 }
