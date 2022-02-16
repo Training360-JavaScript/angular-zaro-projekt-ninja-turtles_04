@@ -2,6 +2,7 @@ import { Bill } from './../../model/bill';
 import { BillService } from './../../service/bill.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-bill-viewer',
@@ -28,7 +29,17 @@ export class BillViewerComponent implements OnInit {
     this.column = key;
     this.type = typeof new Bill()[key];
   }
-  constructor(private billService: BillService) {}
+  constructor(
+    private billService: BillService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
+
+  onDelete(bill: Bill) {
+    this.billService
+      .delete(bill)
+      .subscribe((bill) => this.router.navigate(['/', 'bills']));
+  }
 }
