@@ -35,7 +35,7 @@ export class EditBillComponent implements OnInit {
     this.billService.update(bill).subscribe(
       (bill) => this.router.navigate(['/', 'bills']),
       (err) => this.showError(err),
-      () => this.showSuccess()
+      () => this.showSuccessEdit()
     );
   }
 
@@ -43,20 +43,27 @@ export class EditBillComponent implements OnInit {
     this.billService.create(bill).subscribe(
       (bill) => this.router.navigate(['/', 'bills']),
       (err) => this.showError(err),
-      () => this.showSuccess()
+      () => this.showSuccessCreate()
     );
   }
 
-  showSuccess() {
+  showSuccessEdit() {
     this.notifyService.showSuccess(
-      'Bill edited successfully!',
+      'Item edited successfully!',
+      'NinjaCars Ltd.'
+    );
+  }
+
+  showSuccessCreate() {
+    this.notifyService.showSuccess(
+      'Item created successfully!',
       'NinjaCars Ltd.'
     );
   }
 
   showError(err: String) {
     this.notifyService.showError(
-      'Something is wrong. Details:' + err,
+      'Something went wrong. Details:' + err,
       'NinjaCars Ltd.'
     );
   }

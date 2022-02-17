@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-edit-customer',
@@ -17,7 +18,8 @@ export class EditCustomerComponent implements OnInit {
   constructor(
     private customerService: CustomerService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private notifyService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -31,14 +33,39 @@ export class EditCustomerComponent implements OnInit {
   }
 
   onUpdate(customer: Customer) {
-    this.customerService
-      .update(customer)
-      .subscribe((customer) => this.router.navigate(['/', 'customers']));
+    this.customerService.update(customer).subscribe(
+      (category) => this.router.navigate(['/', 'customers']),
+      (err) => this.showError(err),
+      () => this.showSuccessEdit()
+    );
   }
 
   onCreate(customer: Customer) {
-    this.customerService
-      .create(customer)
-      .subscribe((customer) => this.router.navigate(['/', 'customers']));
+    this.customerService.create(customer).subscribe(
+      (category) => this.router.navigate(['/', 'customers']),
+      (err) => this.showError(err),
+      () => this.showSuccessCreate()
+    );
+  }
+
+  showSuccessEdit() {
+    this.notifyService.showSuccess(
+      'Item edited successfully!',
+      'NinjaCars Ltd.'
+    );
+  }
+
+  showSuccessCreate() {
+    this.notifyService.showSuccess(
+      'Item created successfully!',
+      'NinjaCars Ltd.'
+    );
+  }
+
+  showError(err: String) {
+    this.notifyService.showError(
+      'Something went wrong. Details:' + err,
+      'NinjaCars Ltd.'
+    );
   }
 }
