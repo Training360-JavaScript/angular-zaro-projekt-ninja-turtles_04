@@ -16,6 +16,16 @@ tr:hover {
   }
 }
 
+.select_container .fa {
+  cursor: pointer;
+  margin: .3em;
+  margin-left: 0;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+
 div.scroll {
   // margin: 150px, 150px;
   padding: 4px;
