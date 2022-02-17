@@ -15,7 +15,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <input type="text" class="form-control" name="name" [(ngModel)]="product.name" required
-                  pattern="^[a-űA-Ű]{5,20}$">
+                  pattern="^[a-űA-Ű \-]{5,20}$">
               </div>
               <div [hidden]="productForm.controls['name']?.valid" class="alert alert-danger" role="alert">
                 The name must be at least 5 letters!
@@ -28,7 +28,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <input type="text" class="form-control" name="type" [(ngModel)]="product.type" required
-                  pattern="^[a-űA-Ű]{5,20}$">
+                  pattern="^[a-űA-Ű\d \-]{5,20}$">
               </div>
               <div [hidden]="productForm.controls['type']?.valid" class="alert alert-danger" role="alert">
                 The type must be at least 5 letters!

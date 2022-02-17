@@ -1,13 +1,23 @@
-.tableButtons{
+.tableButtons {
   width: 150px;
+
+  .fa {
+    margin-bottom: -0.8em;
+  }
 }
 
 tr:hover {
   background-color: rgb(192, 181, 181);
 }
 
+.select {
+  @media only screen and (max-width: 560px) {
+    width: auto;
+  }
+}
+
 div.scroll {
-  margin: 150px,150px;
+  // margin: 150px, 150px;
   padding: 4px;
   width: 96em;
   overflow-x: auto;

@@ -28,7 +28,7 @@
               <div class="form-group">
                 <label class="bmd-label-floating h5 text-secondary">Description *</label>
                 <input type="text" class="form-control" name="description" [(ngModel)]="category.description" required
-                  pattern="^[a-űA-Ű]{5,20}$">
+                  pattern="^[a-űA-Ű ]{5,30}$">
               </div>
               <div [hidden]="categoryForm.controls['description']?.valid" class="alert alert-danger" role="alert">
                 The description must be at least 5 letters!
