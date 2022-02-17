@@ -2,6 +2,7 @@ import { Order } from './../../model/order';
 import { OrderService } from './../../service/order.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-order-viewer',
@@ -28,7 +29,32 @@ export class OrderViewerComponent implements OnInit {
     this.column = key;
     this.type = typeof new Order()[key];
   }
-  constructor(private orderService: OrderService) {}
+  constructor(
+    private orderService: OrderService,
+    public notifyService: NotificationService
+  ) {}
 
   ngOnInit(): void {}
+
+  onDelete(order: Order) {
+    this.orderService.delete(order).subscribe(
+      (bill) => (this.orders$ = this.orderService.getAll()),
+      (err) => this.showError(err),
+      () => this.showSuccess()
+    );
+  }
+
+  showSuccess() {
+    this.notifyService.showSuccess(
+      'Item deleted successfully!',
+      'NinjaCars Ltd.'
+    );
+  }
+
+  showError(err: String) {
+    this.notifyService.showError(
+      'Something is wrong. Details: ' + err,
+      'NinjaCars Ltd.'
+    );
+  }
 }

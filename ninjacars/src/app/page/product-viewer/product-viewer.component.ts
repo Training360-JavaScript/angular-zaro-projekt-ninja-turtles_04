@@ -2,6 +2,7 @@ import { ProductService } from './../../service/product.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/model/product';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-product-viewer',
@@ -28,9 +29,34 @@ export class ProductViewerComponent implements OnInit {
     this.column = key;
     this.type = typeof new Product()[key];
   }
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    public notifyService: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.products$;
+  }
+
+  onDelete(product: Product) {
+    this.productService.delete(product).subscribe(
+      (bill) => (this.products$ = this.productService.getAll()),
+      (err) => this.showError(err),
+      () => this.showSuccess()
+    );
+  }
+
+  showSuccess() {
+    this.notifyService.showSuccess(
+      'Item deleted successfully!',
+      'NinjaCars Ltd.'
+    );
+  }
+
+  showError(err: String) {
+    this.notifyService.showError(
+      'Something is wrong. Details: ' + err,
+      'NinjaCars Ltd.'
+    );
   }
 }

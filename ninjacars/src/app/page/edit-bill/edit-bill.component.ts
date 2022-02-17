@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Bill } from 'src/app/model/bill';
 import { BillService } from 'src/app/service/bill.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-edit-bill',
@@ -17,7 +18,8 @@ export class EditBillComponent implements OnInit {
   constructor(
     private billService: BillService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private notifyService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -30,14 +32,32 @@ export class EditBillComponent implements OnInit {
   }
 
   onUpdate(bill: Bill) {
-    this.billService
-      .update(bill)
-      .subscribe((bill) => this.router.navigate(['/', 'bills']));
+    this.billService.update(bill).subscribe(
+      (bill) => this.router.navigate(['/', 'bills']),
+      (err) => this.showError(err),
+      () => this.showSuccess()
+    );
   }
 
   onCreate(bill: Bill) {
-    this.billService
-      .create(bill)
-      .subscribe((bill) => this.router.navigate(['/', 'bills']));
+    this.billService.create(bill).subscribe(
+      (bill) => this.router.navigate(['/', 'bills']),
+      (err) => this.showError(err),
+      () => this.showSuccess()
+    );
+  }
+
+  showSuccess() {
+    this.notifyService.showSuccess(
+      'Bill edited successfully!',
+      'NinjaCars Ltd.'
+    );
+  }
+
+  showError(err: String) {
+    this.notifyService.showError(
+      'Something is wrong. Details:' + err,
+      'NinjaCars Ltd.'
+    );
   }
 }

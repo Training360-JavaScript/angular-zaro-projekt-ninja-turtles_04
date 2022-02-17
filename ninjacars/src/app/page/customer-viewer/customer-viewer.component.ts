@@ -2,6 +2,7 @@ import { CustomerService } from './../../service/customer.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Customer } from 'src/app/model/customer';
 import { Observable } from 'rxjs';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-customer-viewer',
@@ -27,9 +28,34 @@ export class CustomerViewerComponent implements OnInit {
       'id';
     this.column = key;
     this.type = typeof new Customer()[key];
-    if (this.type !== "number") this.type = "string"
+    if (this.type !== 'number') this.type = 'string';
   }
-  constructor(private customerService: CustomerService) {}
+  constructor(
+    private customerService: CustomerService,
+    public notifyService: NotificationService
+  ) {}
 
   ngOnInit(): void {}
+
+  onDelete(customer: Customer) {
+    this.customerService.delete(customer).subscribe(
+      (bill) => (this.customers$ = this.customerService.getAll()),
+      (err) => this.showError(err),
+      () => this.showSuccess()
+    );
+  }
+
+  showSuccess() {
+    this.notifyService.showSuccess(
+      'Item deleted successfully!',
+      'NinjaCars Ltd.'
+    );
+  }
+
+  showError(err: String) {
+    this.notifyService.showError(
+      'Something is wrong. Details: ' + err,
+      'NinjaCars Ltd.'
+    );
+  }
 }

@@ -34,7 +34,7 @@ export class BillViewerComponent implements OnInit {
     private billService: BillService,
     private route: ActivatedRoute,
     private router: Router,
-    public notifyService : NotificationService
+    public notifyService: NotificationService
   ) {}
 
   ngOnInit(): void {}
@@ -42,16 +42,22 @@ export class BillViewerComponent implements OnInit {
   onDelete(bill: Bill) {
     this.billService.delete(bill).subscribe(
       (bill) => (this.bills$ = this.billService.getAll()),
-      (err) => this.showError(),
+      (err) => this.showError(err),
       () => this.showSuccess()
     );
   }
 
   showSuccess() {
-    this.notifyService.showSuccess("Bill deleted successfully!!", "NinjaCars Ltd.")
+    this.notifyService.showSuccess(
+      'Item deleted successfully!!',
+      'NinjaCars Ltd.'
+    );
   }
 
-  showError() {
-    this.notifyService.showError("Something is wrong", "NinjaCars Ltd.")
+  showError(err: String) {
+    this.notifyService.showError(
+      'Something is wrong. Details: ' + err,
+      'NinjaCars Ltd.'
+    );
   }
 }

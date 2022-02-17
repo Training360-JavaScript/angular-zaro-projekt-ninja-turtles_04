@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from 'src/app/model/category';
 import { CategoryService } from 'src/app/service/category.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-category-viewer',
@@ -28,7 +29,32 @@ export class CategoryViewerComponent implements OnInit {
     this.column = key;
     this.type = typeof new Category()[key];
   }
-  constructor(private categoryService: CategoryService) {}
+  constructor(
+    private categoryService: CategoryService,
+    public notifyService: NotificationService
+  ) {}
 
   ngOnInit(): void {}
+
+  onDelete(category: Category) {
+    this.categoryService.delete(category).subscribe(
+      (bill) => (this.categories$ = this.categoryService.getAll()),
+      (err) => this.showError(err),
+      () => this.showSuccess()
+    );
+  }
+
+  showSuccess() {
+    this.notifyService.showSuccess(
+      'Item deleted successfully!!',
+      'NinjaCars Ltd.'
+    );
+  }
+
+  showError(err: String) {
+    this.notifyService.showError(
+      'Something is wrong. Details: ' + err,
+      'NinjaCars Ltd.'
+    );
+  }
 }
