@@ -42,11 +42,11 @@ export class ProductViewerComponent implements OnInit {
     this.productService.delete(product).subscribe(
       (bill) => (this.products$ = this.productService.getAll()),
       (err) => this.showError(err),
-      () => this.showSuccess()
+      () => this.showSuccessDelete()
     );
   }
 
-  showSuccess() {
+  showSuccessDelete() {
     this.notifyService.showSuccess(
       'Item deleted successfully!',
       'NinjaCars Ltd.'
@@ -55,7 +55,7 @@ export class ProductViewerComponent implements OnInit {
 
   showError(err: String) {
     this.notifyService.showError(
-      'Something is wrong. Details: ' + err,
+      'Something went wrong. Details:' + err,
       'NinjaCars Ltd.'
     );
   }

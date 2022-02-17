@@ -49,14 +49,14 @@ export class BillViewerComponent implements OnInit {
 
   showSuccess() {
     this.notifyService.showSuccess(
-      'Item deleted successfully!!',
+      'Item deleted successfully!',
       'NinjaCars Ltd.'
     );
   }
 
   showError(err: String) {
     this.notifyService.showError(
-      'Something is wrong. Details: ' + err,
+      'Something went wrong. Details: ' + err,
       'NinjaCars Ltd.'
     );
   }

@@ -54,7 +54,7 @@ export class CustomerViewerComponent implements OnInit {
 
   showError(err: String) {
     this.notifyService.showError(
-      'Something is wrong. Details: ' + err,
+      'Something went wrong. Details: ' + err,
       'NinjaCars Ltd.'
     );
   }

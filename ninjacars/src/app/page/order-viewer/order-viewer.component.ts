@@ -40,11 +40,11 @@ export class OrderViewerComponent implements OnInit {
     this.orderService.delete(order).subscribe(
       (bill) => (this.orders$ = this.orderService.getAll()),
       (err) => this.showError(err),
-      () => this.showSuccess()
+      () => this.showSuccessDelete()
     );
   }
 
-  showSuccess() {
+  showSuccessDelete() {
     this.notifyService.showSuccess(
       'Item deleted successfully!',
       'NinjaCars Ltd.'
@@ -53,7 +53,7 @@ export class OrderViewerComponent implements OnInit {
 
   showError(err: String) {
     this.notifyService.showError(
-      'Something is wrong. Details: ' + err,
+      'Something went wrong. Details:' + err,
       'NinjaCars Ltd.'
     );
   }
