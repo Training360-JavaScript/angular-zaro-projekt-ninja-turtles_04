@@ -5,3 +5,12 @@
 tr:hover {
   background-color: rgb(192, 181, 181);
 }
+
+div.scroll {
+  margin: 150px,150px;
+  padding: 4px;
+  width: 96em;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
