@@ -112,7 +112,7 @@
         hoverBackgroundColor:['#FFC870', '#A8B3C5'],
         borderWidth: 4}]"></app-pie-chart>
   </div>
-  <div class="col-12 col-md-6 col-xl-3">
+  <div class="col-12 col-md-6">
     <app-pie-chart [chartType]="'bar'"
       [chartDatasets]="[{ data: [ NewOrders$ | async , PaidOrders$ | async, ShippedOrders$ | async], label: 'Number of Orders' }]"
       [chartLabels]="['New orders', 'Paid orders', 'Shipped orders']" [chartColors]="[{
@@ -128,7 +128,7 @@
         ],
         borderWidth: 1}]"></app-pie-chart>
   </div>
-  <div class="col-12 col-md-6 col-xl-3">
+  <div class="col-12 col-md-6">
 
     <app-pie-chart [chartType]="'horizontalBar'"
       [chartDatasets]="[{ data: [ SumOfUnpaidBills$ | async , SumOfPaidBills$ | async], label: 'Sum of bills' }]"
