@@ -1,0 +1,36 @@
+.tableButtons {
+  width: 150px;
+
+  .fa {
+    margin-bottom: -0.8em;
+  }
+}
+
+tr:hover {
+  background-color: rgb(192, 181, 181);
+}
+
+.select {
+  @media only screen and (max-width: 560px) {
+    width: auto;
+  }
+}
+
+.select_container .fa {
+  cursor: pointer;
+  margin: .3em;
+  margin-left: 0;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+
+div.scroll {
+  // margin: 150px, 150px;
+  padding: 4px;
+  width: 96em;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}

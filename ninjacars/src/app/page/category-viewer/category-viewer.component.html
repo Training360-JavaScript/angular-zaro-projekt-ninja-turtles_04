@@ -17,7 +17,7 @@
 </div>
 
 <div class="row">
-  <div class="col-12">
+  <div class="col-12 scroll">
     <table class="table">
       <thead>
         <tr>
@@ -32,9 +32,9 @@
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.description }}</td>
-          <td><button class="btn btn-warning" [routerLink]="['/edit/category/', item.id ]">Edit item<i
-                class="fa fa-address-card" aria-hidden="true"></i></button>
-            <button class="btn btn-danger" (click)="onDelete(item)">Delete item <i class="fa fa-trash"
+          <td><button class="tableButtons btn btn-warning" [routerLink]="['/edit/category/', item.id ]">Edit item<i
+                class="fa fa-address-card pl-2" aria-hidden="true"></i></button>
+            <button class="tableButtons btn btn-danger" (click)="onDelete(item)">Delete item <i class="fa fa-trash"
                 aria-hidden="true"></i></button>
           </td>
         </tr>
