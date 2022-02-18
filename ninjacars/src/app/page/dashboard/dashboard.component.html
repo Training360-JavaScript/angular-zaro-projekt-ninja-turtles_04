@@ -10,7 +10,7 @@
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css"
     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"> -->
 </head>
 
 <h1>Overview of the webshop</h1>
@@ -97,13 +97,13 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-12 col-md-6 col-lg-3">
+  <div class="col-12 col-md-6 col-xl-3">
     <!-- <p>Number of active products: {{ NumberOfActiveProducts$ | async }}</p> -->
     <app-pie-chart
       [chartDatasets]="[{ data: [ NumberOfActiveProducts$ | async , NumberOfInActiveProducts$ | async], label: 'My First dataset' }]"
       [chartLabels]="['Active Products', 'Inactive Products']"></app-pie-chart>
   </div>
-  <div class="col-12 col-md-6 col-lg-3">
+  <div class="col-12 col-md-6 col-xl-3">
 
     <app-pie-chart [chartType]="'doughnut'"
       [chartDatasets]="[{ data: [ NumberOfActiveCustomers$ | async , NumberOfInactiveCustomers$ | async], label: 'My First dataset' }]"
@@ -112,7 +112,7 @@
         hoverBackgroundColor:['#FFC870', '#A8B3C5'],
         borderWidth: 4}]"></app-pie-chart>
   </div>
-  <div class="col-12 col-md-6 col-lg-3">
+  <div class="col-12 col-md-6 col-xl-3">
     <app-pie-chart [chartType]="'bar'"
       [chartDatasets]="[{ data: [ NewOrders$ | async , PaidOrders$ | async, ShippedOrders$ | async], label: 'Number of Orders' }]"
       [chartLabels]="['New orders', 'Paid orders', 'Shipped orders']" [chartColors]="[{
@@ -128,7 +128,7 @@
         ],
         borderWidth: 1}]"></app-pie-chart>
   </div>
-  <div class="col-12 col-md-6 col-lg-3">
+  <div class="col-12 col-md-6 col-xl-3">
 
     <app-pie-chart [chartType]="'horizontalBar'"
       [chartDatasets]="[{ data: [ SumOfUnpaidBills$ | async , SumOfPaidBills$ | async], label: 'Sum of bills' }]"
