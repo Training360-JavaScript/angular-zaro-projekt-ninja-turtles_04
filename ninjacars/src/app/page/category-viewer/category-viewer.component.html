@@ -24,14 +24,15 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Id<i (click)="setSortParams('asc', 'id', 'number')" class="fa fa-arrow-up"></i>
-              <i (click)="setSortParams('desc', 'id', 'number')" class="fa fa-arrow-down"></i>
+            <th>Id<i title="ascending" (click)="setSortParams('asc', 'id', 'number')" class="fa fa-arrow-up"></i>
+              <i title="descending" (click)="setSortParams('desc', 'id', 'number')" class="fa fa-arrow-down"></i>
             </th>
-            <th>Name<i (click)="setSortParams('asc', 'name', 'number')" class="fa fa-arrow-up"></i>
-              <i (click)="setSortParams('desc', 'name', 'number')" class="fa fa-arrow-down"></i>
+            <th>Name<i title="A-Z" (click)="setSortParams('asc', 'name', 'number')" class="fa fa-arrow-up"></i>
+              <i title="Z-A" (click)="setSortParams('desc', 'name', 'number')" class="fa fa-arrow-down"></i>
             </th>
-            <th>Description<i (click)="setSortParams('asc', 'description', 'number')" class="fa fa-arrow-up"></i>
-              <i (click)="setSortParams('desc', 'description', 'number')" class="fa fa-arrow-down"></i>
+            <th>Description<i title="A-Z" (click)="setSortParams('asc', 'description', 'number')"
+                class="fa fa-arrow-up"></i>
+              <i title="Z-A" (click)="setSortParams('desc', 'description', 'number')" class="fa fa-arrow-down"></i>
             </th>
             <th></th>
           </tr>

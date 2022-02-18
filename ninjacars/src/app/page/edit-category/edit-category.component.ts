@@ -34,7 +34,7 @@ export class EditCategoryComponent implements OnInit {
 
   onUpdate(category: Category) {
     this.categoryService.update(category).subscribe(
-      (bill) => this.router.navigate(['/', 'bills']),
+      (bill) => this.router.navigate(['/', 'categories']),
       (err) => this.showError(err),
       () => this.showSuccessEdit()
     );

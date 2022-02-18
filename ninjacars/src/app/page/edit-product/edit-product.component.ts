@@ -33,16 +33,16 @@ export class EditProductComponent implements OnInit {
   }
 
   onUpdate(product: Product) {
-    this.productService.update(product).subscribe(
-      (category) => this.router.navigate(['/', 'orders']),
-      (err) => this.showError(err),
-      () => this.showSuccessEdit()
-    );
+    this.productService.update(product).subscribe({
+      next: (category) => this.router.navigate(['/', 'products']),
+      error: (err) => this.showError(err),
+      complete: () => this.showSuccessEdit()
+    });
   }
 
   onCreate(product: Product) {
     this.productService.create(product).subscribe(
-      (category) => this.router.navigate(['/', 'orders']),
+      (category) => this.router.navigate(['/', 'products']),
       (err) => this.showError(err),
       () => this.showSuccessCreate()
     );
