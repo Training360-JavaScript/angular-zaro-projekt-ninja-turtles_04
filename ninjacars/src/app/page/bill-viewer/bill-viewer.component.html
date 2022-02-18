@@ -38,6 +38,12 @@
         </tr>
       </thead>
       <tbody>
+        <tr *ngIf="!(bills$ | async)">
+          <td colspan="4">
+            <div class="load">Loading...</div>
+
+          </td>
+        </tr>
         <tr *ngFor="let item of bills$ | async  | filter:phrase:filterKey | sort:direction:column:type">
           <td>{{ item.id }}</td>
           <td>{{ item.orderID }}</td>
