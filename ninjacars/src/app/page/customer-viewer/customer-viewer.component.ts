@@ -28,7 +28,7 @@ export class CustomerViewerComponent implements OnInit {
       'id';
     this.column = key;
     this.type = typeof new Customer()[key];
-    if (this.type !== 'number') this.type = 'string';
+    // if (this.type !== 'number') this.type = 'string';
   }
   constructor(
     private customerService: CustomerService,

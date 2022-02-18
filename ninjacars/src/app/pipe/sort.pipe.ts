@@ -26,7 +26,9 @@ export class SortPipe implements PipeTransform {
           if (a[column].toUpperCase() < b[column].toUpperCase()) return -1;
           if (a[column].toUpperCase() > b[column].toUpperCase()) return 1;
           return 0;
-        } else {
+        } else if (type=="object") {
+          return a.address.zip - b.address.zip
+        }else {
           return a[column] - b[column];
         }
       }),
@@ -40,7 +42,9 @@ export class SortPipe implements PipeTransform {
           if (a[column].toUpperCase() > b[column].toUpperCase()) return -1;
           if (a[column].toUpperCase() < b[column].toUpperCase()) return 1;
           return 0;
-        } else {
+        } else if (type=="object") {
+          return b.address.zip - a.address.zip
+        }else {
           return b[column] - a[column];
         }
       }),
