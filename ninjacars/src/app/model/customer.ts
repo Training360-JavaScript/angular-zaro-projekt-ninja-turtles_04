@@ -9,14 +9,14 @@ export class Customer {
   address: Address = new Address();
   active: boolean = false;
 
-  constructor(fakeCustomer?: Customer) {
-    if (fakeCustomer) {
-      this.id = fakeCustomer.id;
-      this.firstName = fakeCustomer.firstName;
-      this.lastName = fakeCustomer.lastName;
-      this.email = fakeCustomer.email;
-      this.address = new Address(fakeCustomer.address);
-      this.active = fakeCustomer.active;
+  constructor(customer?: Customer) {
+    if (customer) {
+      this.id = customer.id;
+      this.firstName = customer.firstName;
+      this.lastName = customer.lastName;
+      this.email = customer.email;
+      this.address = new Address(customer.address);
+      this.active = customer.active;
     } else {
       this.address = new Address();
     }

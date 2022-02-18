@@ -1,14 +1,16 @@
-<div class="col-4 form-group select_container">
-  <select [(ngModel)]="filterKey" class="form-control select">
-    <option value="">All column</option>
-    <option *ngFor="let key of keys" [value]=" key">{{key | titlecase}}</option>
-  </select>
-  <i (click)="setSortParams('desc', filterKey, 'number')" class="fa fa-arrow-up"></i>
-  <i (click)="setSortParams('asc', filterKey, 'number')" class="fa fa-arrow-down"></i>
-</div>
+<div class="searchField form-group">
+  <div class="row align-items-center">
+    <div class="col-1 select_container">
+      <select [(ngModel)]="filterKey" class="form-control select">
+        <option value="">All column</option>
+        <option *ngFor="let key of keys" [value]=" key">{{key | titlecase}}</option>
+      </select>
+    </div>
 
-<div class="col-8 mb-5 input_container">
-  <input [(ngModel)]="phrase" type="text" class="form-control" placeholder="Search...">
+    <div class="col-md-11 input_container">
+      <input [(ngModel)]="phrase" type="text" class="form-control" placeholder="Search...">
+    </div>
+  </div>
 </div>
 
 <div>
@@ -18,15 +20,27 @@
 
 <div class="row">
   <div class="col-12 scroll">
-    <table class="table">
+    <table class="table table-striped">
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Fist name</th>
-          <th>Last name</th>
-          <th>Email</th>
-          <th>Address</th>
-          <th>Active</th>
+          <th>Id<i (click)="setSortParams('asc', 'id', 'number')" class="fa fa-arrow-up"></i>
+            <i (click)="setSortParams('desc', 'id', 'number')" class="fa fa-arrow-down"></i>
+          </th>
+          <th>Fist name<i (click)="setSortParams('asc', 'firstName', 'number')" class="fa fa-arrow-up"></i>
+            <i (click)="setSortParams('desc', 'firstName', 'number')" class="fa fa-arrow-down"></i>
+          </th>
+          <th>Last name<i (click)="setSortParams('asc', 'lastName', 'number')" class="fa fa-arrow-up"></i>
+            <i (click)="setSortParams('desc', 'lastName', 'number')" class="fa fa-arrow-down"></i>
+          </th>
+          <th>Email<i (click)="setSortParams('asc', 'email', 'number')" class="fa fa-arrow-up"></i>
+            <i (click)="setSortParams('desc', 'email', 'number')" class="fa fa-arrow-down"></i>
+          </th>
+          <th>Address<i (click)="setSortParams('asc', 'addressParts', 'number')" class="fa fa-arrow-up"></i>
+            <i (click)="setSortParams('desc', 'addressParts', 'number')" class="fa fa-arrow-down"></i>
+          </th>
+          <th>Active<i (click)="setSortParams('asc', 'active', 'number')" class="fa fa-arrow-up"></i>
+            <i (click)="setSortParams('desc', 'active', 'number')" class="fa fa-arrow-down"></i>
+          </th>
           <th></th>
         </tr>
       </thead>
@@ -43,6 +57,15 @@
             <button class="tableButtons btn btn-danger" (click)="onDelete(item)">Delete item <i class="fa fa-trash"
                 aria-hidden="true"></i></button>
           </td>
+        </tr>
+        <tr>
+          <td>Number of id's: </td>
+          <td>Number of first names:</td>
+          <td>Number of last names: </td>
+          <td>Number of emails: </td>
+          <td>Number of addresses: </td>
+          <td>Number of active statuses: </td>
+          <td></td>
         </tr>
       </tbody>
     </table>
