@@ -67,7 +67,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <input type="number" class="form-control" name="price" [(ngModel)]="product.price" required
-                  pattern="^[1-9]{1,5}$">
+                  pattern="^[0-9]{1,5}$">
               </div>
               <div [hidden]="productForm.controls['price']?.valid" class="alert alert-danger" role="alert">
                 The price cannot be empty!
