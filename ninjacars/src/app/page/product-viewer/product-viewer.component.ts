@@ -1,6 +1,6 @@
 import { ProductService } from './../../service/product.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Product } from 'src/app/model/product';
 import { NotificationService } from 'src/app/service/notification.service';
 
@@ -24,6 +24,9 @@ export class ProductViewerComponent implements OnInit {
   length: number = 0;
   sum: number = 0;
 
+  page: number = 1;
+  actualProducts$: Observable<Product[]> = this.getActualProducts()
+
   setSortParams(direction: string, column: string, type: string) {
     this.direction = direction;
     let key =
@@ -44,6 +47,16 @@ export class ProductViewerComponent implements OnInit {
         this.sum = products.reduce((sum, product) => sum + product.price, 0)
       }
     })
+  }
+
+  setPage(page: number): void {
+    this.page = Math.ceil(page);
+    this.actualProducts$ = this.getActualProducts()  
+  }
+
+  getActualProducts(): Observable<Product[]> {
+    return this.products$.pipe(
+      map(products => products.slice((this.page - 1) * 50, this.page*50)))
   }
 
   onDelete(product: Product) {
