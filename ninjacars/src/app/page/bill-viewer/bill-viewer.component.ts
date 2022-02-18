@@ -22,6 +22,9 @@ export class BillViewerComponent implements OnInit {
   column: string = 'id';
   type: string | number = 'number';
 
+  length: number = 0;
+  sum: number = 0;
+
   setSortParams(direction: string, column: string, _type: string) {
     this.direction = direction;
     let key =
@@ -37,7 +40,14 @@ export class BillViewerComponent implements OnInit {
     public notifyService: NotificationService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.bills$.subscribe({
+      next: bills => {
+        this.length = bills.length;
+        this.sum = bills.reduce((sum, bill) => sum + bill.amount, 0)
+      }
+    })
+  }
 
   onDelete(bill: Bill) {
     this.billService.delete(bill).subscribe(

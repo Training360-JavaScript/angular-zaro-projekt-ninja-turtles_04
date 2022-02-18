@@ -21,6 +21,8 @@ export class CategoryViewerComponent implements OnInit {
   column: string = 'id';
   type: string | number = 'number';
 
+  length: number = 0;
+
   setSortParams(direction: string, column: string, type: string) {
     this.direction = direction;
     let key =
@@ -34,7 +36,13 @@ export class CategoryViewerComponent implements OnInit {
     public notifyService: NotificationService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.categories$.subscribe({
+      next: categories => {
+        this.length = categories.length;
+      }
+    })
+  }
 
   onDelete(category: Category) {
     this.categoryService.delete(category).subscribe(

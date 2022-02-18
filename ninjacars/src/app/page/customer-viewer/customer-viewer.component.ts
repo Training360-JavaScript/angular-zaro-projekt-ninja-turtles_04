@@ -21,6 +21,9 @@ export class CustomerViewerComponent implements OnInit {
   column: string = 'id';
   type: string | number = 'number';
 
+  length: number = 0;
+  sum: number = 0;
+
   setSortParams(direction: string, column: string, type: string) {
     this.direction = direction;
     let key =
@@ -35,7 +38,16 @@ export class CustomerViewerComponent implements OnInit {
     public notifyService: NotificationService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.customers$.subscribe({
+      next: customers => {
+        this.length = customers.length;
+      }
+    })
+    this.customerService.getActiveCustomers().subscribe({
+      next: sum => this.sum = sum
+    })
+  }
 
   onDelete(customer: Customer) {
     this.customerService.delete(customer).subscribe(

@@ -21,6 +21,9 @@ export class OrderViewerComponent implements OnInit {
   column: string = 'id';
   type: string | number = 'number';
 
+  length: number = 0;
+  sum: number = 0;
+
   setSortParams(direction: string, column: string, type: string) {
     this.direction = direction;
     let key =
@@ -34,7 +37,14 @@ export class OrderViewerComponent implements OnInit {
     public notifyService: NotificationService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.orders$.subscribe({
+      next: orders => {
+        this.length = orders.length;
+        this.sum = orders.reduce((sum, order) => sum + order.amount, 0)
+      }
+    })
+  }
 
   onDelete(order: Order) {
     this.orderService.delete(order).subscribe(
