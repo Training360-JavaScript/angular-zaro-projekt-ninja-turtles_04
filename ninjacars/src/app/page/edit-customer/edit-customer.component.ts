@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./edit-customer.component.scss'],
 })
 export class EditCustomerComponent implements OnInit {
-  customer!: Customer;
+  customer: Customer = new Customer();
   edit: boolean = true;
   endString = 'customers';
 
