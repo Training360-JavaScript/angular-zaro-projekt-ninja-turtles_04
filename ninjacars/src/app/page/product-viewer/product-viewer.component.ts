@@ -21,6 +21,9 @@ export class ProductViewerComponent implements OnInit {
   column: string = 'id';
   type: string | number = 'number';
 
+  length: number = 0;
+  sum: number = 0;
+
   setSortParams(direction: string, column: string, type: string) {
     this.direction = direction;
     let key =
@@ -35,7 +38,12 @@ export class ProductViewerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.products$;
+    this.products$.subscribe({
+      next: products => {
+        this.length = products.length;
+        this.sum = products.reduce((sum, product) => sum + product.price, 0)
+      }
+    })
   }
 
   onDelete(product: Product) {
