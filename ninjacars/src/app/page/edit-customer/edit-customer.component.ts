@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
-import { NotificationService } from 'src/app/service/notification.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-customer',
@@ -11,61 +11,44 @@ import { NotificationService } from 'src/app/service/notification.service';
   styleUrls: ['./edit-customer.component.scss'],
 })
 export class EditCustomerComponent implements OnInit {
-  customer$!: Observable<Customer>;
-
-  customer: Customer = new Customer();
+  customer!: Customer;
+  edit: boolean = true;
+  endString = 'customers';
 
   constructor(
-    private customerService: CustomerService,
-    private route: ActivatedRoute,
     private router: Router,
-    private notifyService: NotificationService
-  ) {}
+    private ar: ActivatedRoute,
+    private objectService: CustomerService,
+    private toastr: ToastrService
+  ) {
+    this.ar.params
+      .pipe(switchMap((params) => this.objectService.getOne(params['id'])))
+      .subscribe((currentObject) => {
+        if (
+          currentObject === null ||
+          currentObject === undefined ||
+          currentObject.id < 1
+        ) {
+          this.edit = false;
+          this.customer = new Customer();
+        } else {
+          this.customer = currentObject;
+        }
+      });
+  }
 
-  ngOnInit(): void {
-    this.route.params.subscribe({
-      next: (param) =>
-        (this.customer$ = this.customerService.getOne(param['id'])),
+  ngOnInit(): void {}
+
+  onSend(customer: Customer) {
+    const crudObservable: Observable<any> = this.edit
+      ? this.objectService.update(customer)
+      : this.objectService.create(customer);
+    crudObservable.subscribe((result) => {
+      this.toastr.success('Saving successful', '', {
+        timeOut: 1800,
+        positionClass: 'toast-top-right',
+      });
+      this.router.navigate([this.endString]);
     });
-    this.customer$.subscribe({
-      next: (customer) => (this.customer = customer ? customer : this.customer),
-    });
-  }
-
-  onUpdate(customer: Customer) {
-    this.customerService.update(customer).subscribe(
-      (category) => this.router.navigate(['/', 'customers']),
-      (err) => this.showError(err),
-      () => this.showSuccessEdit()
-    );
-  }
-
-  onCreate(customer: Customer) {
-    this.customerService.create(customer).subscribe(
-      (category) => this.router.navigate(['/', 'customers']),
-      (err) => this.showError(err),
-      () => this.showSuccessCreate()
-    );
-  }
-
-  showSuccessEdit() {
-    this.notifyService.showSuccess(
-      'Item edited successfully!',
-      'NinjaCars Ltd.'
-    );
-  }
-
-  showSuccessCreate() {
-    this.notifyService.showSuccess(
-      'Item created successfully!',
-      'NinjaCars Ltd.'
-    );
-  }
-
-  showError(err: String) {
-    this.notifyService.showError(
-      'Something went wrong. Details:' + err,
-      'NinjaCars Ltd.'
-    );
   }
 }
