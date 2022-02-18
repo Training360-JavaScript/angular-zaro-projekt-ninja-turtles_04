@@ -1,13 +1,13 @@
 <div class="searchField form-group">
   <div class="row align-items-center">
-    <div class="col-1 select_container">
+    <div class="col-4 select_container">
       <select [(ngModel)]="filterKey" class="form-control select">
         <option value="">All column</option>
         <option *ngFor="let key of keys" [value]=" key">{{key | titlecase}}</option>
       </select>
     </div>
 
-    <div class="col-md-11 input_container">
+    <div class="col-md-8 input_container">
       <input [(ngModel)]="phrase" type="text" class="form-control" placeholder="Search...">
     </div>
   </div>
