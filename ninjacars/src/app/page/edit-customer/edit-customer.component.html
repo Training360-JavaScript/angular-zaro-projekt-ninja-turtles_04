@@ -2,12 +2,12 @@
   <div class="col-md-8">
     <div class="card">
       <div class="card-header card-header-primary">
-        <h4 class="card-title" *ngIf="customer$ | async">Edit Customer</h4>
-        <h4 class="card-title" *ngIf="!(customer$ | async)">Add New Customer</h4>
+        <h4 class="card-title" *ngIf="customer">Edit Customer</h4>
+        <h4 class="card-title" *ngIf="!(customer)">Add New Customer</h4>
 
       </div>
       <div class="card-body">
-        <form #customerForm="ngForm">
+        <form #customerForm="ngForm" (ngSubmit)="onSend(customer)">
           <input type="hidden" name="id" [(ngModel)]="customer.id">
 
           <h3 class="h5 text-secondary">Full Name *</h3>
@@ -52,39 +52,39 @@
               <input [(ngModel)]="customer.address.zip" type="number" name="zip" class="form-control" required
                 pattern="^[0-9]{1,5}$">
               <div [hidden]="customerForm.controls['zip']?.valid" class="alert alert-danger" role="alert">
-                The format of the zip must be valid!
+                The format of the zip must be at least a one-digit number!
               </div>
             </div>
             <div class="form-group col-5">
               <label for="country-id">Country</label>
               <input [(ngModel)]="customer.address.country" type="text" name="country" class="form-control" required
-                pattern="^[a-űA-Ű]{5,20}$">
+                pattern="^[a-űA-Ű]{2,20}$">
               <div [hidden]="customerForm.controls['country']?.valid" class="alert alert-danger" role="alert">
-                The format of the country must be valid!
+                The format of the country must be at least 2 letters!
               </div>
             </div>
             <div class="form-group col-5">
               <label for="city-id">City</label>
               <input [(ngModel)]="customer.address.city" type="text" name="city" class="form-control" required
-                pattern="^[a-űA-Ű]{5,20}$">
+                pattern="^[a-űA-Ű]{2,20}$">
               <div [hidden]="customerForm.controls['city']?.valid" class="alert alert-danger" role="alert">
-                The format of the city must be valid!
+                The format of the city must be at least 2 letters!
               </div>
             </div>
             <div class="form-group col-12">
               <label for="street-id">Street</label>
               <input [(ngModel)]="customer.address.street" type="text" name="street" class="form-control" required
-                pattern="^[a-űA-Ű]{5,20}$">
+                pattern="^[a-űA-Ű0-9 ]{2,50}$">
               <div [hidden]="customerForm.controls['street']?.valid" class="alert alert-danger" role="alert">
-                The format of the street must be valid!
+                The format of the street must be at least 2 letters!
               </div>
             </div>
             <div class="form-group col-12">
               <label for="notes-id">Notes</label>
               <input [(ngModel)]="customer.address.notes" type="text" name="notes" class="form-control" required
-                pattern="^[a-űA-Ű]{5,20}$">
+                pattern="^[a-űA-Ű0-9 ]{2,50}$">
               <div [hidden]="customerForm.controls['notes']?.valid" class="alert alert-danger" role="alert">
-                The last name must be at least 5 letters!
+                The last name must be at least 2 letters!
               </div>
             </div>
           </div>
@@ -95,12 +95,8 @@
             </div>
           </div>
 
-          <button *ngIf="customer.id!==0" (click)="onUpdate(customer)" [disabled]="customerForm.invalid" type="submit"
-            class="btn btn-primary pull-right">Update
-            Customer</button>
-          <button *ngIf="customer.id===0" (click)="onCreate(customer)" [disabled]="customerForm.invalid" type="submit"
-            class="btn btn-primary pull-right">Create
-            Customer</button>
+          <button [disabled]="customerForm.invalid" type="submit" class="btn btn-primary pull-right">Save changes
+          </button>
           <div class="clearfix"></div>
         </form>
       </div>

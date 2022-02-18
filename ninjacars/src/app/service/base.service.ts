@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class BaseService<T extends { id: number }> {
+export class BaseService<T extends { id: number; [key: string]: any }> {
   apiUrl: string = environment.apiUrl;
   endString: string = '';
 
