@@ -63,7 +63,7 @@
         </tbody>
       </table>
     </div>
-    <nav aria-label="...">
+    <nav *ngIf="length>50" aria-label="...">
       <ul class="pagination">
         <li class="page-item">
           <span (click)="setPage(1)" class="page-link">First</span>
@@ -77,7 +77,8 @@
         </li>
         <li *ngIf="page*50<length" class="page-item"><a class="page-link" (click)="setPage(page + 1)">{{ page + 1 }}</a>
         </li>
-        <li *ngIf="page===1" class="page-item"><a class="page-link" (click)="setPage(page + 2)">{{ page + 2 }}</a></li>
+        <li *ngIf="page===1 && length>100" class="page-item"><a class="page-link"
+            (click)="setPage(page + 2)">{{ page + 2 }}</a></li>
         <li class="page-item">
           <a (click)="setPage(length/50)" class="page-link">Last</a>
         </li>
