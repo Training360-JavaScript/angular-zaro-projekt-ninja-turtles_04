@@ -1,7 +1,7 @@
 import { Bill } from './../../model/bill';
 import { BillService } from './../../service/bill.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/service/notification.service';
 
@@ -25,6 +25,9 @@ export class BillViewerComponent implements OnInit {
   length: number = 0;
   sum: number = 0;
 
+  page: number = 1;
+  actualBills$: Observable<Bill[]> = this.getActualProducts();
+
   setSortParams(direction: string, column: string, _type: string) {
     this.direction = direction;
     let key =
@@ -42,11 +45,22 @@ export class BillViewerComponent implements OnInit {
 
   ngOnInit(): void {
     this.bills$.subscribe({
-      next: bills => {
+      next: (bills) => {
         this.length = bills.length;
-        this.sum = bills.reduce((sum, bill) => sum + bill.amount, 0)
-      }
-    })
+        this.sum = bills.reduce((sum, bill) => sum + bill.amount, 0);
+      },
+    });
+  }
+
+  setPage(page: number): void {
+    this.page = Math.ceil(page);
+    this.actualBills$ = this.getActualProducts();
+  }
+
+  getActualProducts(): Observable<Bill[]> {
+    return this.bills$.pipe(
+      map((bills) => bills.slice((this.page - 1) * 50, this.page * 50))
+    );
   }
 
   onDelete(bill: Bill) {
