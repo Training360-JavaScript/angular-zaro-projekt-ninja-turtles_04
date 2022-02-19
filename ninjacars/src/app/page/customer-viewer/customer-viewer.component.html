@@ -51,7 +51,7 @@
 
           </td>
         </tr>
-        <tr *ngFor="let item of customers$ | async  | filter:phrase:filterKey | sort:direction:column:type">
+        <tr *ngFor="let item of actualCustomers$ | async  | filter:phrase:filterKey | sort:direction:column:type">
           <td>{{ item.id }}</td>
           <td>{{ item.firstName }}</td>
           <td>{{ item.lastName }}</td>
@@ -76,4 +76,24 @@
       </tbody>
     </table>
   </div>
+  <nav aria-label="...">
+    <ul class="pagination">
+      <li class="page-item">
+        <span (click)="setPage(1)" class="page-link">First</span>
+      </li>
+      <li *ngIf="page > 1" class="page-item"><a class="page-link" (click)="setPage(page - 1)">{{ page - 1 }}</a></li>
+      <li class="page-item active">
+        <span class="page-link">
+          {{ page }}
+          <span class="sr-only">(current)</span>
+        </span>
+      </li>
+      <li *ngIf="page*50<length" class="page-item"><a class="page-link" (click)="setPage(page + 1)">{{ page + 1 }}</a>
+      </li>
+      <li *ngIf="page===1" class="page-item"><a class="page-link" (click)="setPage(page + 2)">{{ page + 2 }}</a></li>
+      <li class="page-item">
+        <a (click)="setPage(length/50)" class="page-link">Last</a>
+      </li>
+    </ul>
+  </nav>
 </div>

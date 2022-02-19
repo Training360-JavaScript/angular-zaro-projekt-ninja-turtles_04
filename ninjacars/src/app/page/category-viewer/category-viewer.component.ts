@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Category } from 'src/app/model/category';
 import { CategoryService } from 'src/app/service/category.service';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -23,6 +23,9 @@ export class CategoryViewerComponent implements OnInit {
 
   length: number = 0;
 
+  page: number = 1;
+  actualCategories$: Observable<Category[]> = this.getactualCategories();
+
   setSortParams(direction: string, column: string, type: string) {
     this.direction = direction;
     let key =
@@ -38,10 +41,23 @@ export class CategoryViewerComponent implements OnInit {
 
   ngOnInit(): void {
     this.categories$.subscribe({
-      next: categories => {
+      next: (categories) => {
         this.length = categories.length;
-      }
-    })
+      },
+    });
+  }
+
+  setPage(page: number): void {
+    this.page = Math.ceil(page);
+    this.actualCategories$ = this.getactualCategories();
+  }
+
+  getactualCategories(): Observable<Category[]> {
+    return this.categories$.pipe(
+      map((categories) =>
+        categories.slice((this.page - 1) * 50, this.page * 50)
+      )
+    );
   }
 
   onDelete(category: Category) {
